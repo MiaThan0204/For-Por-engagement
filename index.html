@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- =====================================
+       1. WEBSITE SETTINGS
+       ===================================== -->
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>For Por Global | Support Center</title>
+
+  <!-- Kết nối file CSS -->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+  <!-- =====================================
+       2. MAIN WEBSITE CONTAINER
+       ===================================== -->
+
+  <main class="app">
+
+
+    <!-- ===================================
+         3. FAN SUPPORT BANNER
+         =================================== -->
+
+    <div class="banner">
+
+      <img
+        src="images/cover.png"
+        alt="For Por Global Fan Support banner"
+        class="banner-image"
+      >
+
+    </div>
+
+
+    <!-- ===================================
+         4. SUBTITLE
+         =================================== -->
+
+    <p class="subtitle">
+      Choose your platform to spread love 🩵
+    </p>
+
+
+    <!-- ===================================
+         5. PLATFORM SELECTION
+         =================================== -->
+
+    <div
+      class="tabs"
+      role="group"
+      aria-label="Choose platform"
+    >
+
+      <!-- X / Twitter button -->
+      <button
+        class="tab selected"
+        data-platform="x"
+        aria-pressed="true"
+      >
+        𝕏 &nbsp; X / Twitter
+      </button>
+
+
+      <!-- Instagram button -->
+      <button
+        class="tab"
+        data-platform="ig"
+        aria-pressed="false"
+      >
+        ◎ &nbsp; Instagram
+      </button>
+
+    </div>
+
+
+    <!-- ===================================
+         6. CAPTION PREVIEW
+         =================================== -->
+
+    <section
+      class="preview"
+      aria-label="Caption preview"
+    >
+
+      <div class="preview-header">
+
+        <span>
+          MESSAGE PREVIEW
+        </span>
+
+        <span>
+          💌
+        </span>
+
+      </div>
+
+
+      <!-- JavaScript sẽ hiển thị caption ở đây -->
+      <p
+        id="caption"
+        aria-live="polite"
+      ></p>
+
+    </section>
+
+
+    <!-- ===================================
+         7. GENERATE CAPTION BUTTON
+         =================================== -->
+
+    <button
+      id="generate"
+      class="primary"
+    >
+      ↻ &nbsp; Generate another caption
+    </button>
+
+
+    <!-- ===================================
+         8. COPY AND POST BUTTONS
+         =================================== -->
+
+    <div class="actions">
+
+      <!-- Copy caption -->
+      <button
+        id="copy"
+        class="secondary"
+      >
+        ▢ &nbsp; Copy caption
+      </button>
+
+
+      <!-- Open X or Instagram -->
+      <button
+        id="post"
+        class="secondary"
+      >
+        ↗ &nbsp; Post on X
+      </button>
+
+    </div>
+
+
+    <!-- ===================================
+         9. USER INSTRUCTIONS
+         =================================== -->
+
+    <p id="hint">
+      X opens with your caption prefilled.
+    </p>
+
+
+    <!-- ===================================
+         10. WEBSITE FOOTER
+         =================================== -->
+
+    <footer>
+
+      Made with love for Por Suppakarn 🩵
+
+      <br>
+
+      <small>
+        Fan-made support tool · No login required
+      </small>
+
+    </footer>
+
+
+  </main>
+
+
+  <!-- =====================================
+       11. CONNECT JAVASCRIPT
+       ===================================== -->
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

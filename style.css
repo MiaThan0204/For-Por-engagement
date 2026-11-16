@@ -1,0 +1,309 @@
+
+/* ==========================================
+   1. GENERAL SETTINGS
+   ========================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  display: grid;
+  place-items: center;
+
+  padding: 28px 16px;
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 15% 12%,
+      #d5eaff,
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 85% 85%,
+      #fce8f4,
+      transparent 45%
+    ),
+    #f7fbff;
+
+  color: #254a70;
+}
+
+
+/* ==========================================
+   2. MAIN WEBSITE CONTAINER
+   ========================================== */
+
+.app {
+  width: min(100%, 600px);
+
+  padding: 28px;
+
+  background: #ffffffdd;
+
+  border: 1px solid #fff;
+  border-radius: 28px;
+
+  box-shadow: 0 20px 65px #5588ba20;
+
+  text-align: center;
+}
+
+
+/* ==========================================
+   3. BANNER IMAGE
+   ========================================== */
+
+.banner {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.banner-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  border-radius: 12px;
+}
+
+
+/* ==========================================
+   4. SUBTITLE
+   ========================================== */
+
+.subtitle {
+  font-size: 14px;
+  color: #6484a0;
+
+  margin: 0 0 24px;
+}
+
+
+/* ==========================================
+   5. TABS AND ACTION BUTTON LAYOUT
+   ========================================== */
+
+.tabs,
+.actions {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+}
+
+.tabs {
+  margin-bottom: 16px;
+}
+
+
+/* ==========================================
+   6. ALL BUTTONS
+   ========================================== */
+
+button {
+  cursor: pointer;
+
+  border-radius: 13px;
+
+  font: inherit;
+  font-weight: 700;
+
+  padding: 14px 12px;
+
+  transition:
+    transform 0.15s,
+    background 0.15s;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:focus-visible {
+  outline: 3px solid #478dd1;
+  outline-offset: 2px;
+}
+
+
+/* ==========================================
+   7. X AND INSTAGRAM TABS
+   ========================================== */
+
+.tab {
+  background: white;
+
+  border: 1px solid #d6e6f3;
+
+  color: #547898;
+
+  font-size: 13px;
+}
+
+.tab.selected {
+  background: #d8ecff;
+
+  border-color: #78b5eb;
+
+  color: #24527c;
+}
+
+
+/* ==========================================
+   8. CAPTION PREVIEW BOX
+   ========================================== */
+
+.preview {
+  min-height: 188px;
+
+  border-radius: 18px;
+
+  background: #f4f9ff;
+
+  border: 1px solid #e0effc;
+
+  padding: 19px;
+
+  text-align: left;
+
+  margin-bottom: 14px;
+}
+
+
+/* ==========================================
+   9. PREVIEW HEADER
+   ========================================== */
+
+.preview-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  color: #7496b2;
+
+  font-size: 11px;
+
+  letter-spacing: 1.1px;
+
+  font-weight: 800;
+}
+
+
+/* ==========================================
+   10. GENERATED CAPTION TEXT
+   ========================================== */
+
+#caption {
+  line-height: 1.75;
+
+  white-space: pre-wrap;
+
+  color: #315b7e;
+
+  font-size: 15px;
+
+  margin: 22px 0 5px;
+}
+
+
+/* ==========================================
+   11. GENERATE BUTTON
+   ========================================== */
+
+.primary {
+  width: 100%;
+
+  background: #74b7eb;
+
+  border: 1px solid #74b7eb;
+
+  color: white;
+
+  margin-bottom: 10px;
+}
+
+.primary:hover {
+  background: #579fdb;
+}
+
+
+/* ==========================================
+   12. COPY AND POST BUTTONS
+   ========================================== */
+
+.secondary {
+  border: 1px solid #c6dff2;
+
+  background: white;
+
+  color: #356d9c;
+
+  font-size: 13px;
+}
+
+.secondary:hover {
+  background: #eaf5ff;
+}
+
+
+/* ==========================================
+   13. HINT TEXT
+   ========================================== */
+
+#hint {
+  font-size: 12px;
+
+  color: #7893a8;
+
+  margin: 13px 0 28px;
+}
+
+
+/* ==========================================
+   14. FOOTER
+   ========================================== */
+
+footer {
+  font-size: 12px;
+
+  color: #7195b4;
+
+  line-height: 2;
+}
+
+footer small {
+  color: #9aaebe;
+}
+
+
+/* ==========================================
+   15. MOBILE RESPONSIVE
+   ========================================== */
+
+@media (max-width: 370px) {
+
+  .app {
+    padding: 24px 16px;
+  }
+
+  .tab,
+  .secondary {
+    font-size: 12px;
+
+    padding: 12px 7px;
+  }
+
+}
