@@ -218,6 +218,47 @@ button:focus-visible {
   margin: 22px 0 5px;
 }
 
+/* ==========================================
+   10B. YOUR GOAL (COUNTER + PROGRESS BAR)
+   ========================================== */
+
+.goal {
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #f4f9ff;
+  border: 1px solid #e0effc;
+}
+
+.goal-header {
+  display: flex;
+  justify-content: space-between;
+  color: #5f86a6;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+}
+
+.goal-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: #dcebf9;
+  overflow: hidden;
+}
+
+.goal-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #74b7eb, #8fd0f5);
+  transition: width 0.4s ease;
+}
+
+/* Khi đạt mục tiêu */
+.goal.done .goal-fill {
+  background: linear-gradient(90deg, #5cc9a7, #86e0bf);
+}
 
 /* ==========================================
    11. GENERATE BUTTON
