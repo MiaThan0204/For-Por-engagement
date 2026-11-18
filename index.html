@@ -202,7 +202,45 @@
       X opens with your caption prefilled.
     </p>
 
+    <!-- ===================================
+         9B. LINK VAULT
+         =================================== -->
 
+    <section
+      class="links"
+      aria-label="Link vault"
+    >
+
+      <div class="links-header">
+        <span>LINK VAULT 🔗</span>
+        <span id="links-progress">0 / 0 done</span>
+      </div>
+
+      <div class="goal-bar" role="presentation">
+        <div class="goal-fill" id="links-fill"></div>
+      </div>
+
+      <button
+        id="next-link"
+        class="primary"
+        type="button"
+      >
+        →  Open next link
+      </button>
+
+      <ul id="link-list" class="link-list"></ul>
+
+      <button
+        id="reset-links"
+        class="reset-links"
+        type="button"
+        hidden
+      >
+        Reset progress
+      </button>
+
+    </section>
+    
     <!-- ===================================
          10. WEBSITE FOOTER
          =================================== -->
@@ -226,7 +264,8 @@
   <!-- =====================================
        11. CONNECT JAVASCRIPT
        ===================================== -->
-
+  
+  <script src="links.js"></script>
   <script src="script.js"></script>
 
 </body>
