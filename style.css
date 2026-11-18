@@ -362,3 +362,131 @@ footer small {
   }
 
 }
+/* ==========================================
+   17. LINK VAULT
+   ========================================== */
+
+.links {
+  margin: 0 0 28px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #f4f9ff;
+  border: 1px solid #e0effc;
+  text-align: left;
+}
+
+.links-header {
+  display: flex;
+  justify-content: space-between;
+  color: #5f86a6;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+}
+
+.links .primary {
+  margin: 14px 0 12px;
+}
+
+.primary:disabled,
+.primary:disabled:hover {
+  background: #b9d6ee;
+  border-color: #b9d6ee;
+  cursor: default;
+}
+
+.link-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid #d6e6f3;
+  border-radius: 12px;
+}
+
+.link-item.done {
+  opacity: 0.6;
+}
+
+.link-badge {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #d8ecff;
+  color: #24527c;
+  font-weight: 700;
+}
+
+.link-info {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  font-size: 13px;
+}
+
+.link-info strong {
+  color: #315b7e;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link-info small {
+  color: #7893a8;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.link-open {
+  flex: none;
+  padding: 9px 12px;
+  font-size: 12px;
+  border: 1px solid #c6dff2;
+  border-radius: 10px;
+  background: #fff;
+  color: #356d9c;
+}
+
+.link-open:hover {
+  background: #eaf5ff;
+}
+
+.link-empty {
+  text-align: center;
+  color: #7893a8;
+  font-size: 13px;
+  padding: 10px;
+}
+
+.reset-links {
+  display: block;
+  margin: 12px auto 0;
+  padding: 6px 10px;
+  border: 0;
+  background: none;
+  color: #7893a8;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.reset-links[hidden] {
+  display: none;
+}
