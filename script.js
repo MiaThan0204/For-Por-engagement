@@ -301,7 +301,15 @@ document.querySelectorAll('.tab').forEach(b => {
 
 document.getElementById('generate').addEventListener(
   'click',
-  generate
+  () => {
+
+    // Tạo caption mới
+    generate();
+
+    // Cộng 1 vào mục tiêu
+    addToGoal();
+
+  }
 );
 
 
@@ -374,3 +382,6 @@ postButton.addEventListener('click', () => {
    ========================================== */
 
 generate();
+
+// Hiển thị số đếm đã lưu khi mở website
+updateGoal();
