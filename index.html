@@ -117,8 +117,45 @@
       ></p>
 
     </section>
+        <!-- ===================================
+         6B. YOUR GOAL (COUNTER + PROGRESS BAR)
+         =================================== -->
 
+    <section
+      class="goal"
+      id="goal-box"
+      aria-label="Your goal"
+    >
 
+      <div class="goal-header">
+
+        <span id="goal-label">
+          YOUR GOAL
+        </span>
+
+        <!-- Ví dụ: 2 / 500 · 0.4% -->
+        <span>
+          <span id="goal-count">0 / 500</span>
+          &nbsp;·&nbsp;
+          <span id="goal-percent">0%</span>
+        </span>
+
+      </div>
+
+      <div
+        class="goal-bar"
+        id="goal-bar"
+        role="progressbar"
+        aria-label="Your goal progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+      >
+        <div class="goal-fill" id="goal-fill"></div>
+      </div>
+
+    </section>
+    
     <!-- ===================================
          7. GENERATE CAPTION BUTTON
          =================================== -->
