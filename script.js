@@ -121,6 +121,68 @@ const postButton = document.getElementById('post');
 // Lấy dòng hướng dẫn bên dưới các nút
 const hint = document.getElementById('hint');
 
+/* ==========================================
+   PHẦN 2B: YOUR GOAL (ĐẾM SỐ CAPTION ĐÃ TẠO)
+   ========================================== */
+
+// Mục tiêu: số caption muốn tạo (đổi số này nếu muốn)
+const GOAL = 500;
+
+// Tên dùng để lưu số đếm trong trình duyệt
+const STORAGE_KEY = 'forPorGoalCount';
+
+// Lấy các phần tử trong HTML
+const goalBox = document.getElementById('goal-box');
+const goalLabel = document.getElementById('goal-label');
+const goalCountEl = document.getElementById('goal-count');
+const goalPercentEl = document.getElementById('goal-percent');
+const goalFill = document.getElementById('goal-fill');
+const goalBar = document.getElementById('goal-bar');
+
+// Đọc số đã lưu từ lần trước (nếu không có thì bắt đầu từ 0)
+let goalCount = 0;
+
+try {
+  goalCount = parseInt(localStorage.getItem(STORAGE_KEY), 10) || 0;
+} catch {
+  goalCount = 0;
+}
+
+// Cập nhật chữ và thanh tiến độ
+function updateGoal() {
+
+  // Phần trăm thật, tối đa 100%
+  const percent = Math.min(100, (goalCount / GOAL) * 100);
+
+  // Làm tròn 1 chữ số thập phân (vd: 0.4%)
+  const shown = Number(percent.toFixed(1));
+
+  goalCountEl.textContent = goalCount + ' / ' + GOAL;
+  goalPercentEl.textContent = shown + '%';
+  goalFill.style.width = percent + '%';
+  goalBar.setAttribute('aria-valuenow', String(Math.round(percent)));
+
+  // Đạt mục tiêu thì đổi màu và chữ
+  const done = goalCount >= GOAL;
+  goalBox.classList.toggle('done', done);
+  goalLabel.textContent = done ? 'YOUR GOAL 🎉' : 'YOUR GOAL';
+
+}
+
+// Cộng thêm 1 và lưu lại
+function addToGoal() {
+
+  goalCount++;
+
+  try {
+    localStorage.setItem(STORAGE_KEY, String(goalCount));
+  } catch {
+    // Nếu trình duyệt chặn lưu thì vẫn đếm bình thường trong phiên này
+  }
+
+  updateGoal();
+
+}
 
 /* ==========================================
    PHẦN 3: HÀM CHỌN CÂU NGẪU NHIÊN
