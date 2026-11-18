@@ -385,3 +385,169 @@ generate();
 
 // Hiển thị số đếm đã lưu khi mở website
 updateGoal();
+
+/* ==========================================
+   PHẦN 10: LINK VAULT (DANH SÁCH LINK CHO FAN)
+   ========================================== */
+
+// Lấy danh sách link từ file links.js (nếu file lỗi thì dùng danh sách rỗng)
+const linkData = typeof LINKS !== 'undefined' ? LINKS : [];
+
+// Tên dùng để lưu các link fan đã mở
+const DONE_KEY = 'forPorLinksDone';
+
+// Lấy các phần tử trong HTML
+const linkListEl = document.getElementById('link-list');
+const linksProgressEl = document.getElementById('links-progress');
+const linksFillEl = document.getElementById('links-fill');
+const nextLinkBtn = document.getElementById('next-link');
+const resetLinksBtn = document.getElementById('reset-links');
+
+// Đọc danh sách link đã mở từ lần trước
+let doneKeys = [];
+
+try {
+  const saved = JSON.parse(localStorage.getItem(DONE_KEY));
+  if (Array.isArray(saved)) doneKeys = saved;
+} catch {
+  doneKeys = [];
+}
+
+// Mỗi link được nhận biết bằng id (không có id thì dùng url)
+function keyOf(link) {
+  return link.id || link.url;
+}
+
+// Chỉ nhận link bắt đầu bằng https:// cho an toàn
+function isSafeUrl(url) {
+  return typeof url === 'string' && /^https:\/\//i.test(url);
+}
+
+// Lưu lại danh sách đã mở
+function saveDone() {
+  try {
+    localStorage.setItem(DONE_KEY, JSON.stringify(doneKeys));
+  } catch {
+    // Trình duyệt chặn lưu thì vẫn dùng bình thường trong phiên này
+  }
+}
+
+// Mở link và đánh dấu đã xong
+function openLink(link) {
+
+  if (!isSafeUrl(link.url)) return;
+
+  if (!doneKeys.includes(keyOf(link))) {
+    doneKeys.push(keyOf(link));
+    saveDone();
+  }
+
+  window.open(link.url, '_blank', 'noopener,noreferrer');
+
+  renderLinks();
+
+}
+
+// Vẽ lại danh sách link và thanh tiến độ
+function renderLinks() {
+
+  const valid = linkData.filter(l => isSafeUrl(l.url));
+
+  const doneCount = valid.filter(
+    l => doneKeys.includes(keyOf(l))
+  ).length;
+
+  const percent = valid.length
+    ? (doneCount / valid.length) * 100
+    : 0;
+
+  linksProgressEl.textContent = doneCount + ' / ' + valid.length + ' done';
+  linksFillEl.style.width = percent + '%';
+
+  // Xóa danh sách cũ rồi vẽ lại
+  linkListEl.textContent = '';
+
+  if (valid.length === 0) {
+    const empty = document.createElement('li');
+    empty.className = 'link-empty';
+    empty.textContent = 'No links yet. Please check back soon 🩵';
+    linkListEl.appendChild(empty);
+  }
+
+  valid.forEach(link => {
+
+    const done = doneKeys.includes(keyOf(link));
+
+    const li = document.createElement('li');
+    li.className = 'link-item' + (done ? ' done' : '');
+
+    // Biểu tượng nền tảng
+    const badge = document.createElement('span');
+    badge.className = 'link-badge';
+    badge.textContent = link.platform === 'x' ? '𝕏' : '◎';
+
+    // Tên link và loại việc cần làm
+    const info = document.createElement('div');
+    info.className = 'link-info';
+
+    const title = document.createElement('strong');
+    title.textContent = link.title || 'Link';
+
+    const tag = document.createElement('small');
+    tag.textContent = link.action === 'share' ? 'Share' : 'Comment';
+
+    info.appendChild(title);
+    info.appendChild(tag);
+
+    // Nút mở link
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'link-open';
+    btn.textContent = done ? '✓ Open again' : 'Open ↗';
+    btn.addEventListener('click', () => openLink(link));
+
+    li.appendChild(badge);
+    li.appendChild(info);
+    li.appendChild(btn);
+
+    linkListEl.appendChild(li);
+
+  });
+
+  // Nút "Open next link": mở link đầu tiên chưa làm
+  const next = valid.find(l => !doneKeys.includes(keyOf(l)));
+
+  nextLinkBtn.disabled = !next;
+  nextLinkBtn.textContent = next
+    ? '→  Open next link'
+    : '✓  All links done';
+
+  // Chỉ hiện nút Reset khi đã mở ít nhất 1 link
+  resetLinksBtn.hidden = doneCount === 0;
+
+}
+
+// Bấm "Open next link"
+nextLinkBtn.addEventListener('click', () => {
+
+  const next = linkData.find(
+    l => isSafeUrl(l.url) && !doneKeys.includes(keyOf(l))
+  );
+
+  if (next) openLink(next);
+
+});
+
+// Bấm "Reset progress"
+resetLinksBtn.addEventListener('click', () => {
+
+  if (!confirm('Reset your link progress?')) return;
+
+  doneKeys = [];
+  saveDone();
+  renderLinks();
+
+});
+
+// Hiển thị danh sách khi mở website
+renderLinks();
