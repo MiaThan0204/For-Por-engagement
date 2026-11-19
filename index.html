@@ -17,8 +17,19 @@
 
   <title>For Por Global | Support Center</title>
 
-  <!-- Kết nối file CSS -->
-  <link rel="stylesheet" href="style.css">
+
+<!-- =====================================
+     HTML-1.A - WEBSITE STYLES & ICONS
+     ===================================== -->
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Bootstrap Icons: X and Instagram -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
 
 </head>
 
@@ -75,38 +86,64 @@
       Choose your platform to spread love 🩵
     </p>
 
+<!-- =====================================
+     5. PLATFORM SELECTION
+     ===================================== -->
 
-    <!-- ===================================
-         5. PLATFORM SELECTION
-         =================================== -->
+<div
+  class="tabs"
+  role="group"
+  aria-label="Choose platform"
+>
 
-    <div
-      class="tabs"
-      role="group"
-      aria-label="Choose platform"
-    >
+  <!-- =================================
+       HTML-5.A - X / TWITTER
+       ================================= -->
 
-      <!-- X / Twitter button -->
-      <button
-        class="tab selected"
-        data-platform="x"
-        aria-pressed="true"
-      >
-        𝕏 &nbsp; X / Twitter
-      </button>
+  <button
+    class="tab tab-x selected"
+    data-platform="x"
+    aria-pressed="true"
+    type="button"
+  >
+
+    <span class="platform-icon">
+      <i class="bi bi-twitter-x"></i>
+    </span>
+
+    <span class="platform-name">
+      X / Twitter
+    </span>
+
+    <span class="platform-check">✓</span>
+
+  </button>
 
 
-      <!-- Instagram button -->
-      <button
-        class="tab"
-        data-platform="ig"
-        aria-pressed="false"
-      >
-        ◎ &nbsp; Instagram
-      </button>
+  <!-- =================================
+       HTML-5.B - INSTAGRAM
+       ================================= -->
 
-    </div>
+  <button
+    class="tab tab-ig"
+    data-platform="ig"
+    aria-pressed="false"
+    type="button"
+  >
 
+    <span class="platform-icon">
+      <i class="bi bi-instagram"></i>
+    </span>
+
+    <span class="platform-name">
+      Instagram
+    </span>
+
+    <span class="platform-check">✓</span>
+
+  </button>
+
+</div>
 
     <!-- ===================================
          6. CAPTION PREVIEW
