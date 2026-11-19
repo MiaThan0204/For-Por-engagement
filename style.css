@@ -380,40 +380,78 @@ padding: 10px 12px;
 
 }
 
+
 /* ==========================================
    9. PREVIEW HEADER
    ========================================== */
 
+/* 9.A - HEADER LAYOUT */
+
 .preview-header {
   display: flex;
-
+  align-items: center;
   justify-content: space-between;
 
-  color: #7496b2;
+  gap: 10px;
 
-  font-size: 11px;
-
-  letter-spacing: 1.1px;
-
+  color: #648fb8;
+  font-size: 12px;
   font-weight: 800;
+  letter-spacing: 0.5px;
+
+  margin-bottom: 12px;
 }
 
+
+/* 9.B - DECORATIVE DASHED LINE */
+
+.preview-header::before {
+  content: "💌";
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+.preview-header::after {
+  content: "";
+
+  flex: 1;
+  height: 1px;
+
+  border-top: 1.5px dashed #b9d8f5;
+}
+
+
+/* 9.C - HEADER TITLE */
+
+.preview-header span:first-child {
+  white-space: nowrap;
+}
+
+
+/* 9.D - HEADER HEART */
+
+.preview-header span:last-child {
+  color: #ec95c4;
+  font-size: 15px;
+  letter-spacing: 0;
+  order: 2;
+}
 
 /* ==========================================
    10. GENERATED CAPTION TEXT
    ========================================== */
 
 #caption {
-  line-height: 1.75;
-
-  white-space: pre-wrap;
+  margin: 10px 0 4px;
 
   color: #315b7e;
+  font-size: 14px;
+  line-height: 1.65;
 
-  font-size: 15px;
-
-  margin: 22px 0 5px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
+
 
 /* ==========================================
    10B. YOUR GOAL (COUNTER + PROGRESS BAR)
@@ -546,17 +584,21 @@ footer small {
 
 }
 
+
 /* ==========================================
-   16. GIỮ KHUNG CAPTION CỐ ĐỊNH TRÊN ĐIỆN THOẠI
+   16. COMPACT CAPTION ON MOBILE
    ========================================== */
 
 @media (max-width: 480px) {
 
   .preview {
-    height: 390px;
+    height: auto;
+    min-height: 120px;
+    max-height: 240px;
   }
 
 }
+
 /* ==========================================
    17. LINK VAULT
    ========================================== */
