@@ -351,22 +351,6 @@ padding: 10px 12px;
 }
 
 
-/* 8.B - DECORATIVE CORNER HEART */
-
-.preview::after {
-  content: "♡";
-
-  position: absolute;
-  right: 16px;
-  bottom: 8px;
-
-  color: #f0a6cc;
-  font-size: 23px;
-
-  pointer-events: none;
-}
-
-
 /* 8.C - MOBILE */
 
 @media (max-width: 600px) {
@@ -410,51 +394,108 @@ padding: 10px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  gap: 10px;
-
-  color: #648fb8;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
+  gap: 8px;
 
   margin-bottom: 12px;
 }
 
+/* 9.B - POLAR BEAR + TITLE */
 
-/* 9.B - DECORATIVE DASHED LINE */
+.preview-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 
-.preview-header::before {
-  content: "💌";
-  font-size: 16px;
-  letter-spacing: 0;
-}
-
-.preview-header::after {
-  content: "";
-
-  flex: 1;
-  height: 1px;
-
-  border-top: 1.5px dashed #b9d8f5;
-}
-
-
-/* 9.C - HEADER TITLE */
-
-.preview-header span:first-child {
+  color: #648fb8;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
   white-space: nowrap;
 }
 
-
-/* 9.D - HEADER HEART */
-
-.preview-header span:last-child {
-  color: #ec95c4;
-  font-size: 15px;
-  letter-spacing: 0;
-  order: 2;
+.preview-bear {
+  font-size: 21px;
+  line-height: 1;
 }
+
+/* 9.C - MINI PINK CREAM PROGRESS */
+
+.preview-header .goal-mini {
+  flex: 0 0 auto;
+
+  margin: 0 0 0 auto;
+  padding: 6px 10px;
+
+  background: #fff0f5;
+  border: 1px solid #e8a7c5;
+  border-radius: 9px;
+
+  text-align: center;
+}
+
+/* 9.D - PROGRESS NUMBERS */
+
+.goal-mini-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  color: #a64d79;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* 9.E - MINI PROGRESS BAR */
+
+.goal-mini .goal-bar {
+  height: 4px;
+  margin-top: 5px;
+  background: #f6dce8;
+}
+
+.goal-mini .goal-fill {
+  background: linear-gradient(
+    90deg,
+    #d984ae,
+    #f0aacb
+  );
+}
+
+/* 9.F - COMPLETED GOAL COLOR */
+
+.goal-mini.done .goal-fill {
+  background: linear-gradient(
+    90deg,
+    #d984ae,
+    #f0aacb
+  );
+}
+
+/* 9.G - MOBILE */
+
+@media (max-width: 480px) {
+
+  .preview-title {
+    font-size: 10px;
+    gap: 4px;
+  }
+
+  .preview-bear {
+    font-size: 18px;
+  }
+
+  .preview-header .goal-mini {
+    padding: 5px 7px;
+  }
+
+  .goal-mini-count {
+    font-size: 10px;
+  }
+
+}
+
 
 /* ==========================================
    10. GENERATED CAPTION TEXT
