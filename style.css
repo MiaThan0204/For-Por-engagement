@@ -315,28 +315,70 @@ padding: 10px 12px;
   }
 
 }
+
 /* ==========================================
    8. CAPTION PREVIEW BOX
    ========================================== */
 
+/* 8.A - COMPACT PREVIEW CARD */
+
 .preview {
-   
-  height: 330px;
+  position: relative;
+
+  height: auto;
+  min-height: 135px;
+  max-height: 260px;
   overflow-y: auto;
 
+  margin-bottom: 14px;
+  padding: 18px 20px;
+
+  background: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    #f7fbff 75%,
+    #fff7fc 100%
+  );
+
+  border: 1.5px solid #c5def8;
   border-radius: 18px;
 
-  background: #f4f9ff;
-
-  border: 1px solid #e0effc;
-
-  padding: 19px;
+  box-shadow:
+    0 5px 18px rgba(100, 160, 215, 0.10),
+    inset 0 0 0 4px rgba(235, 246, 255, 0.65);
 
   text-align: left;
-
-  margin-bottom: 14px;
 }
 
+
+/* 8.B - DECORATIVE CORNER HEART */
+
+.preview::after {
+  content: "♡";
+
+  position: absolute;
+  right: 16px;
+  bottom: 8px;
+
+  color: #f0a6cc;
+  font-size: 23px;
+
+  pointer-events: none;
+}
+
+
+/* 8.C - MOBILE */
+
+@media (max-width: 600px) {
+
+  .preview {
+    min-height: 120px;
+    max-height: 240px;
+    padding: 15px 16px;
+    border-radius: 16px;
+  }
+
+}
 
 /* ==========================================
    9. PREVIEW HEADER
