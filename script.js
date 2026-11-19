@@ -396,12 +396,24 @@ const linkData = typeof LINKS !== 'undefined' ? LINKS : [];
 // Tên dùng để lưu các link fan đã mở
 const DONE_KEY = 'forPorLinksDone';
 
-// Lấy các phần tử trong HTML
+// Lấy các phần tử của danh sách link
 const linkListEl = document.getElementById('link-list');
 const linksProgressEl = document.getElementById('links-progress');
 const linksFillEl = document.getElementById('links-fill');
 const nextLinkBtn = document.getElementById('next-link');
 const resetLinksBtn = document.getElementById('reset-links');
+
+// Lấy các phần tử của cửa sổ caption
+const vaultModal = document.getElementById('vault-modal');
+const modalBadge = document.getElementById('modal-badge');
+const modalTitle = document.getElementById('modal-title');
+const modalSub = document.getElementById('modal-sub');
+const modalText = document.getElementById('modal-text');
+const modalStatus = document.getElementById('modal-status');
+const modalCopyOpen = document.getElementById('modal-copy-open');
+
+// Link đang được mở trong cửa sổ
+let currentLink = null;
 
 // Đọc danh sách link đã mở từ lần trước
 let doneKeys = [];
@@ -432,7 +444,40 @@ function saveDone() {
   }
 }
 
-// Mở link và đánh dấu đã xong
+
+/* ------------------------------------------
+   Tạo caption ngẫu nhiên cho 1 link
+   (dùng lại banks, pick, hashtag ở phía trên)
+   ------------------------------------------ */
+
+function makeCaption(plat) {
+
+  // Link X dùng caption X, link Instagram dùng caption Instagram
+  const b = banks[plat] || banks.ig;
+
+  let s = [
+    pick(b.opening),
+    pick(b.middle),
+    pick(b.ending)
+  ].join(' ');
+
+  // Caption X thì thêm keyword và hashtag
+  if (plat === 'x') {
+    s += '\n\n' +
+      [eventKeyword.trim(), fixedHashtags]
+        .filter(Boolean)
+        .join('\n\n');
+  }
+
+  return s;
+
+}
+
+
+/* ------------------------------------------
+   Mở link + đánh dấu đã xong
+   ------------------------------------------ */
+
 function openLink(link) {
 
   if (!isSafeUrl(link.url)) return;
@@ -448,7 +493,109 @@ function openLink(link) {
 
 }
 
-// Vẽ lại danh sách link và thanh tiến độ
+
+/* ------------------------------------------
+   Cửa sổ caption (hiện khi bấm vào 1 link)
+   ------------------------------------------ */
+
+function showModal(link) {
+
+  currentLink = link;
+
+  modalBadge.textContent = link.platform === 'x' ? '𝕏' : '◎';
+  modalTitle.textContent = link.title || 'Link';
+
+  modalSub.textContent = link.action === 'share'
+    ? 'Auto-matched caption randomized for this post.'
+    : 'Auto-matched comment randomized for this post.';
+
+  modalText.value = makeCaption(link.platform);
+  modalStatus.textContent = '';
+
+  vaultModal.hidden = false;
+  modalCopyOpen.focus();
+
+}
+
+function hideModal() {
+
+  vaultModal.hidden = true;
+  currentLink = null;
+
+}
+
+// Nút ×, bấm ra ngoài cửa sổ, hoặc phím Esc để đóng
+document.getElementById('modal-close').addEventListener('click', hideModal);
+
+vaultModal.addEventListener('click', (e) => {
+  if (e.target === vaultModal) hideModal();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !vaultModal.hidden) hideModal();
+});
+
+// Nút Randomize: đổi sang caption khác
+document.getElementById('modal-random').addEventListener('click', () => {
+
+  if (!currentLink) return;
+
+  modalText.value = makeCaption(currentLink.platform);
+  modalStatus.textContent = '';
+
+});
+
+// Nút COPY COMMENT & OPEN LINK
+modalCopyOpen.addEventListener('click', async () => {
+
+  if (!currentLink) return;
+
+  const link = currentLink;
+
+  // Bắt đầu copy ngay (trước khi mở tab mới)
+  let copied;
+
+  try {
+    copied = navigator.clipboard
+      .writeText(modalText.value)
+      .then(() => true, () => false);
+  } catch {
+    copied = Promise.resolve(false);
+  }
+
+  // Mở link
+  openLink(link);
+
+  // Copy được thì đóng cửa sổ, không được thì báo để fan tự copy
+  if (await copied) {
+
+    hideModal();
+
+  } else {
+
+    modalText.select();
+    modalStatus.textContent =
+      'Could not copy automatically. Please copy the text above manually.';
+
+  }
+
+});
+
+// Nút OPEN LINK ONLY
+document.getElementById('modal-open-only').addEventListener('click', () => {
+
+  if (!currentLink) return;
+
+  openLink(currentLink);
+  hideModal();
+
+});
+
+
+/* ------------------------------------------
+   Vẽ danh sách link và thanh tiến độ
+   ------------------------------------------ */
+
 function renderLinks() {
 
   const valid = linkData.filter(l => isSafeUrl(l.url));
@@ -499,12 +646,12 @@ function renderLinks() {
     info.appendChild(title);
     info.appendChild(tag);
 
-    // Nút mở link
+    // Nút mở cửa sổ caption
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'link-open';
     btn.textContent = done ? '✓ Open again' : 'Open ↗';
-    btn.addEventListener('click', () => openLink(link));
+    btn.addEventListener('click', () => showModal(link));
 
     li.appendChild(badge);
     li.appendChild(info);
@@ -514,7 +661,7 @@ function renderLinks() {
 
   });
 
-  // Nút "Open next link": mở link đầu tiên chưa làm
+  // Nút "Open next link": mở cửa sổ cho link đầu tiên chưa làm
   const next = valid.find(l => !doneKeys.includes(keyOf(l)));
 
   nextLinkBtn.disabled = !next;
@@ -534,7 +681,7 @@ nextLinkBtn.addEventListener('click', () => {
     l => isSafeUrl(l.url) && !doneKeys.includes(keyOf(l))
   );
 
-  if (next) openLink(next);
+  if (next) showModal(next);
 
 });
 
