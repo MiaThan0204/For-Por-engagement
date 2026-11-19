@@ -259,7 +259,79 @@
 
 
   </main>
+  
+  <!-- =====================================
+       10B. LINK CAPTION POPUP
+       ===================================== -->
 
+  <div class="vault-modal" id="vault-modal" hidden>
+
+    <div
+      class="vault-box"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+
+      <button
+        type="button"
+        class="vault-close"
+        id="modal-close"
+        aria-label="Close"
+      >×</button>
+
+      <div class="vault-head">
+
+        <span class="link-badge" id="modal-badge">𝕏</span>
+
+        <div>
+          <p class="vault-title" id="modal-title">Link title</p>
+          <p class="vault-sub" id="modal-sub">
+            Auto-matched comment randomized for this post.
+          </p>
+          <p class="vault-sub2">
+            Copy &amp; paste to boost engagement!
+          </p>
+        </div>
+
+      </div>
+
+      <div class="vault-prepared">
+
+        <div class="vault-prepared-head">
+          <span>PREPARED COMMENT FOR COPY:</span>
+          <button
+            type="button"
+            class="vault-random"
+            id="modal-random"
+          >↻ Randomize</button>
+        </div>
+
+        <textarea
+          class="vault-text"
+          id="modal-text"
+          aria-label="Prepared comment"
+        ></textarea>
+
+      </div>
+
+      <button
+        type="button"
+        class="vault-main"
+        id="modal-copy-open"
+      >COPY COMMENT &amp; OPEN LINK ↗</button>
+
+      <button
+        type="button"
+        class="vault-alt"
+        id="modal-open-only"
+      >OPEN LINK ONLY</button>
+
+      <p class="vault-status" id="modal-status" role="status"></p>
+
+    </div>
+
+  </div>
 
   <!-- =====================================
        11. CONNECT JAVASCRIPT
