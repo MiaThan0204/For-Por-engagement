@@ -145,59 +145,53 @@
 
 </div>
 
-    <!-- ===================================
-         6. CAPTION PREVIEW
-         =================================== -->
 
-    <section
-      class="preview"
-      aria-label="Caption preview"
-    >
+<!-- ===================================
+     6. CAPTION PREVIEW
+     =================================== -->
 
-      <div class="preview-header">
+<section
+  class="preview"
+  aria-label="Caption preview"
+>
 
-       <span>
-        MESSAGE PREVIEW
-       </span>
+  <!-- HTML-6.A - MESSAGE HEADER -->
 
-        <span>
-          💌
-        </span>
+  <div class="preview-header">
 
-      </div>
+    <!-- Polar bear + title -->
+    <span class="preview-title">
+      <span class="preview-bear">🐻‍❄️</span>
+      MESSAGE PREVIEW
+    </span>
 
 
-      <!-- JavaScript sẽ hiển thị caption ở đây -->
-      <p
-        id="caption"
-        aria-live="polite"
-      ></p>
+    <!-- HTML-6.B - MINI PINK PROGRESS -->
 
-    </section>
-        <!-- ===================================
-         6B. YOUR GOAL (COUNTER + PROGRESS BAR)
-         =================================== -->
-
-    <section
-      class="goal"
+    <div
+      class="goal goal-mini"
       id="goal-box"
       aria-label="Your goal"
     >
 
-      <div class="goal-header">
+      <span id="goal-label" hidden>
+        YOUR GOAL
+      </span>
 
-        <span id="goal-label">
-          YOUR GOAL
+      <span class="goal-mini-count">
+
+        <span id="goal-count">
+          0 / 500
         </span>
 
-        <!-- Ví dụ: 2 / 500 · 0.4% -->
-        <span>
-          <span id="goal-count">0 / 500</span>
-          &nbsp;·&nbsp;
-          <span id="goal-percent">0%</span>
+        <span id="goal-percent">
+          0%
         </span>
 
-      </div>
+      </span>
+
+
+      <!-- Progress bar -->
 
       <div
         class="goal-bar"
@@ -208,10 +202,28 @@
         aria-valuemax="100"
         aria-valuenow="0"
       >
-        <div class="goal-fill" id="goal-fill"></div>
+
+        <div
+          class="goal-fill"
+          id="goal-fill"
+        ></div>
+
       </div>
 
-    </section>
+    </div>
+
+  </div>
+
+
+  <!-- HTML-6.C - GENERATED CAPTION -->
+
+  <p
+    id="caption"
+    aria-live="polite"
+  ></p>
+
+</section>
+
     
     <!-- ===================================
          7. GENERATE CAPTION BUTTON
