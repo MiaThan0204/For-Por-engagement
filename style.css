@@ -418,22 +418,32 @@ padding: 10px 12px;
   line-height: 1;
 }
 
-/* 9.C - MINI PINK CREAM PROGRESS */
+
+/* ==========================================
+   9.C - FIXED SIZE PINK PROGRESS
+   ========================================== */
 
 .preview-header .goal-mini {
-  flex: 0 0 auto;
+  flex: 0 0 118px;
+
+  width: 118px;
+  min-width: 118px;
+  max-width: 118px;
 
   margin: 0 0 0 auto;
-  padding: 6px 10px;
+  padding: 6px 9px;
 
   background: #fff0f5;
   border: 1px solid #e8a7c5;
   border-radius: 9px;
 
   text-align: center;
+  box-sizing: border-box;
 }
 
-/* 9.D - PROGRESS NUMBERS */
+/* ==========================================
+   9.D - STABLE PROGRESS NUMBERS
+   ========================================== */
 
 .goal-mini-count {
   display: flex;
@@ -441,27 +451,41 @@ padding: 10px 12px;
   justify-content: center;
   gap: 5px;
 
+  width: 100%;
+
   color: #a64d79;
   font-size: 11px;
   font-weight: 800;
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
-/* 9.E - MINI PROGRESS BAR */
+/* ==========================================
+   9.E - FIXED PROGRESS TRACK
+   ========================================== */
 
 .goal-mini .goal-bar {
+  display: block;
+  width: 100%;
   height: 4px;
+
   margin-top: 5px;
   background: #f6dce8;
+  border-radius: 999px;
+  overflow: hidden;
 }
 
 .goal-mini .goal-fill {
+  height: 100%;
   background: linear-gradient(
     90deg,
     #d984ae,
     #f0aacb
   );
+  border-radius: 999px;
+  transition: width 0.4s ease;
 }
+
 
 /* 9.F - COMPLETED GOAL COLOR */
 
@@ -487,8 +511,12 @@ padding: 10px 12px;
   }
 
   .preview-header .goal-mini {
-    padding: 5px 7px;
-  }
+  flex: 0 0 108px;
+  width: 108px;
+  min-width: 108px;
+  max-width: 108px;
+  padding: 5px 7px;
+}
 
   .goal-mini-count {
     font-size: 10px;
@@ -1053,5 +1081,163 @@ footer small {
   .sky-cloud {
     font-size: 60px;
   }
+   
+/* ==========================================
+   CSS-20 - FIXED MESSAGE PREVIEW & PROGRESS
+   DESKTOP + MOBILE
+   ========================================== */
+
+/* 20.A - FIX MESSAGE PREVIEW SIZE */
+
+.preview {
+  width: 100%;
+  height: 210px;
+  min-height: 210px;
+  max-height: 210px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+}
+
+/* 20.B - FIX HEADER POSITION */
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+
+  width: 100%;
+}
+
+/* 20.C - FIX TITLE */
+
+.preview-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  flex: 0 1 auto;
+  min-width: 0;
+
+  white-space: nowrap;
+}
+
+/* 20.D - FIX PINK PROGRESS SIZE */
+
+.preview-header .goal-mini {
+  flex: 0 0 118px;
+
+  width: 118px;
+  min-width: 118px;
+  max-width: 118px;
+
+  margin: 0 0 0 auto;
+  padding: 6px 8px;
+
+  box-sizing: border-box;
+}
+
+/* 20.E - KEEP NUMBERS STABLE */
+
+.goal-mini-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  width: 100%;
+
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* 20.F - FIX PROGRESS TRACK */
+
+.goal-mini .goal-bar {
+  width: 100%;
+  height: 4px;
+  margin-top: 5px;
+
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+/* 20.G - MOBILE FIX */
+
+@media (max-width: 600px) {
+
+  .preview {
+    width: 100%;
+    height: 190px;
+    min-height: 190px;
+    max-height: 190px;
+
+    padding: 14px 12px;
+  }
+
+  .preview-header {
+    gap: 5px;
+  }
+
+  .preview-title {
+    font-size: 10px;
+    gap: 4px;
+    letter-spacing: 0;
+  }
+
+  .preview-bear {
+    font-size: 17px;
+  }
+
+  .preview-header .goal-mini {
+    flex: 0 0 108px;
+
+    width: 108px;
+    min-width: 108px;
+    max-width: 108px;
+
+    padding: 5px 6px;
+  }
+
+  .goal-mini-count {
+    font-size: 10px;
+    gap: 3px;
+  }
+
+}
+
+/* 20.H - EXTRA SMALL PHONES */
+
+@media (max-width: 360px) {
+
+  .preview {
+    padding: 12px 9px;
+  }
+
+  .preview-title {
+    font-size: 9px;
+  }
+
+  .preview-bear {
+    font-size: 15px;
+  }
+
+  .preview-header .goal-mini {
+    flex-basis: 100px;
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+  .goal-mini-count {
+    font-size: 9px;
+  }
+
+}
+
 
 }
