@@ -652,3 +652,109 @@ footer small {
   color: #c0392b;
   text-align: center;
 }
+
+/* ==========================================
+   CSS-19. SKY DECORATIONS
+   ========================================== */
+
+
+/* CSS-19.A - DECORATION LAYER */
+
+.sky-decor {
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+
+/* CSS-19.B - STARS */
+
+.sky-star {
+  position: absolute;
+
+  color: #ffffff;
+  font-size: 42px;
+
+  text-shadow:
+    0 0 3px #ffffff,
+    0 0 12px #ffffffaa;
+}
+
+.star-1 {
+  top: 8%;
+  left: 3%;
+}
+
+.star-2 {
+  top: 25%;
+  right: 4%;
+}
+
+.star-3 {
+  top: 52%;
+  left: 5%;
+}
+
+.star-4 {
+  top: 75%;
+  right: 6%;
+}
+
+.star-5 {
+  bottom: 8%;
+  left: 4%;
+}
+
+
+/* CSS-19.C - CLOUDS */
+
+.sky-cloud {
+  position: absolute;
+
+  color: rgba(255, 255, 255, 0.8);
+
+  font-size: 100px;
+  line-height: 1;
+}
+
+.cloud-1 {
+  top: 12%;
+  right: -20px;
+}
+
+.cloud-2 {
+  top: 55%;
+  left: -35px;
+}
+
+.cloud-3 {
+  bottom: 3%;
+  right: -20px;
+}
+
+
+/* CSS-19.D - WEBSITE ABOVE DECORATIONS */
+
+.app {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* CSS-19.E - MOBILE */
+
+@media (max-width: 600px) {
+
+  .sky-star {
+    font-size: 24px;
+  }
+
+  .sky-cloud {
+    font-size: 60px;
+  }
+
+}
