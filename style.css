@@ -1082,26 +1082,27 @@ footer small {
     font-size: 60px;
   }
    
+
 /* ==========================================
-   CSS-20 - FIXED MESSAGE PREVIEW & PROGRESS
+   CSS-20 - STABLE MESSAGE PREVIEW
    DESKTOP + MOBILE
    ========================================== */
 
-/* 20.A - FIX MESSAGE PREVIEW SIZE */
+/* 20.A - MESSAGE PREVIEW CONTAINER */
 
 .preview {
   width: 100%;
-  height: 210px;
-  min-height: 210px;
-  max-height: 210px;
+  height: 310px;
+  min-height: 310px;
+  max-height: none;
 
-  overflow-y: auto;
-  overflow-x: hidden;
+  padding: 18px 20px;
 
+  overflow: visible;
   box-sizing: border-box;
 }
 
-/* 20.B - FIX HEADER POSITION */
+/* 20.B - HEADER */
 
 .preview-header {
   display: flex;
@@ -1110,14 +1111,15 @@ footer small {
   gap: 8px;
 
   width: 100%;
+  margin-bottom: 16px;
 }
 
-/* 20.C - FIX TITLE */
+/* 20.C - TITLE */
 
 .preview-title {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
 
   flex: 0 1 auto;
   min-width: 0;
@@ -1125,7 +1127,7 @@ footer small {
   white-space: nowrap;
 }
 
-/* 20.D - FIX PINK PROGRESS SIZE */
+/* 20.D - FIXED PROGRESS BOX */
 
 .preview-header .goal-mini {
   flex: 0 0 118px;
@@ -1140,7 +1142,7 @@ footer small {
   box-sizing: border-box;
 }
 
-/* 20.E - KEEP NUMBERS STABLE */
+/* 20.E - STABLE NUMBERS */
 
 .goal-mini-count {
   display: flex;
@@ -1155,7 +1157,7 @@ footer small {
   white-space: nowrap;
 }
 
-/* 20.F - FIX PROGRESS TRACK */
+/* 20.F - FIXED PROGRESS TRACK */
 
 .goal-mini .goal-bar {
   width: 100%;
@@ -1166,27 +1168,41 @@ footer small {
   border-radius: 999px;
 }
 
-/* 20.G - MOBILE FIX */
+/* 20.G - CAPTION TEXT */
+
+#caption {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.7;
+
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================
+   20.H - MOBILE
+   ========================================== */
 
 @media (max-width: 600px) {
 
   .preview {
-    width: 100%;
-    height: 190px;
-    min-height: 190px;
-    max-height: 190px;
+    height: 330px;
+    min-height: 330px;
+    max-height: none;
 
-    padding: 14px 12px;
+    padding: 15px 13px;
+    overflow: visible;
   }
 
   .preview-header {
     gap: 5px;
+    margin-bottom: 14px;
   }
 
   .preview-title {
     font-size: 10px;
     gap: 4px;
-    letter-spacing: 0;
   }
 
   .preview-bear {
@@ -1208,14 +1224,23 @@ footer small {
     gap: 3px;
   }
 
+  #caption {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
 }
 
-/* 20.H - EXTRA SMALL PHONES */
+/* ==========================================
+   20.I - EXTRA SMALL PHONES
+   ========================================== */
 
 @media (max-width: 360px) {
 
   .preview {
-    padding: 12px 9px;
+    height: 350px;
+    min-height: 350px;
+    padding: 13px 10px;
   }
 
   .preview-title {
@@ -1227,7 +1252,8 @@ footer small {
   }
 
   .preview-header .goal-mini {
-    flex-basis: 100px;
+    flex: 0 0 100px;
+
     width: 100px;
     min-width: 100px;
     max-width: 100px;
@@ -1237,7 +1263,9 @@ footer small {
     font-size: 9px;
   }
 
-}
-
+  #caption {
+    font-size: 12px;
+    line-height: 1.65;
+  }
 
 }
