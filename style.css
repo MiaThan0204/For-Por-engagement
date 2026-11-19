@@ -139,28 +139,182 @@ button:focus-visible {
 }
 
 
+
 /* ==========================================
    7. X AND INSTAGRAM TABS
    ========================================== */
 
-.tab {
-  background: white;
 
-  border: 1px solid #d6e6f3;
+/* 7.A - BUTTON LAYOUT */
 
-  color: #547898;
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
 
+
+/* 7.B - GENERAL BUTTON STYLE */
+
+.tabs .tab {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  min-height: 85px;
+  padding: 16px;
+
+  background: #ffffff;
+  border: 2px solid #e0e8f2;
+  border-radius: 20px;
+
+  color: #35485c;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* 7.C - HOVER EFFECT */
+
+.tabs .tab:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(41, 79, 112, 0.12);
+}
+
+
+/* 7.D - ICONS AND TEXT */
+
+.platform-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 32px;
+  line-height: 1;
+}
+
+.platform-name {
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.platform-check {
+  position: absolute;
+  top: 9px;
+  right: 12px;
+
+  opacity: 0;
   font-size: 13px;
 }
 
-.tab.selected {
-  background: #d8ecff;
 
-  border-color: #78b5eb;
+/* 7.E - X BUTTON */
 
-  color: #24527c;
+.tabs .tab-x {
+  background: #ffffff;
+  border-color: #dedede;
+  color: #111111;
 }
 
+.tabs .tab-x.selected {
+  background: #111111;
+  border-color: #111111;
+  color: #ffffff;
+
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+}
+
+
+/* 7.F - INSTAGRAM BUTTON */
+
+.tabs .tab-ig {
+  background: #fffafd;
+  border-color: #f3d4e5;
+  color: #a23b82;
+}
+
+.tabs .tab-ig.selected {
+  background: linear-gradient(
+    125deg,
+    #a85bd4 0%,
+    #cf5ca8 35%,
+    #ec6999 65%,
+    #f5a06b 100%
+  );
+
+  border-color: #d76da9;
+  color: #ffffff;
+
+  box-shadow:
+    0 8px 24px rgba(210, 91, 158, 0.25);
+}
+
+.tabs .tab-ig:not(.selected):hover {
+  background: #fff0f8;
+  border-color: #e8a8cc;
+}
+
+
+/* 7.G - ICON COLORS */
+
+.tabs .tab-x .platform-icon {
+  color: #111111;
+}
+
+.tabs .tab-ig .platform-icon {
+  color: #d14b91;
+}
+
+.tabs .tab.selected .platform-icon {
+  color: #ffffff;
+}
+
+.tabs .tab.selected .platform-check {
+  opacity: 1;
+}
+
+
+/* 7.H - MOBILE */
+
+@media (max-width: 600px) {
+
+  .tabs {
+    gap: 10px;
+  }
+
+  .tabs .tab {
+    min-height: 74px;
+    gap: 7px;
+    padding: 12px 6px;
+    border-radius: 15px;
+  }
+
+  .platform-icon {
+    font-size: 25px;
+  }
+
+  .platform-name {
+    font-size: 13px;
+  }
+
+  .platform-check {
+    top: 5px;
+    right: 7px;
+    font-size: 11px;
+  }
+
+}
 
 /* ==========================================
    8. CAPTION PREVIEW BOX
