@@ -1088,13 +1088,14 @@ footer small {
    DESKTOP + MOBILE
    ========================================== */
 
+
 /* 20.A - MESSAGE PREVIEW CONTAINER */
 
 .preview {
   width: 100%;
-  height: 310px;
-  min-height: 310px;
-  max-height: none;
+  height: 245px;
+  min-height: 245px;
+  max-height: 245px;
 
   padding: 18px 20px;
 
@@ -1186,14 +1187,14 @@ footer small {
 
 @media (max-width: 600px) {
 
-  .preview {
-    height: 330px;
-    min-height: 330px;
-    max-height: none;
+.preview {
+  height: 270px;
+  min-height: 270px;
+  max-height: 270px;
 
-    padding: 15px 13px;
-    overflow: visible;
-  }
+  padding: 15px 13px;
+  overflow: visible;
+}
 
   .preview-header {
     gap: 5px;
@@ -1236,12 +1237,15 @@ footer small {
    ========================================== */
 
 @media (max-width: 360px) {
+   
+.preview {
+  height: 290px;
+  min-height: 290px;
+  max-height: 290px;
 
-  .preview {
-    height: 350px;
-    min-height: 350px;
-    padding: 13px 10px;
-  }
+  padding: 13px 10px;
+  overflow: visible;
+}
 
   .preview-title {
     font-size: 9px;
