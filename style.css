@@ -1273,3 +1273,258 @@ footer small {
   }
 
 }
+
+
+/* ==========================================
+   CSS-21 - ICE ROSE GOAL COMPLETED POPUP
+   ========================================== */
+
+/* 21.A - POPUP OVERLAY */
+
+.goal-modal[hidden] {
+  display: none;
+}
+
+.goal-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: grid;
+  place-items: center;
+  padding: 16px;
+
+  background: rgba(35, 55, 85, 0.4);
+  backdrop-filter: blur(5px);
+}
+
+
+/* 21.B - ICE ROSE POPUP */
+
+.goal-popup {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  width: 275px;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  padding: 20px 17px 17px;
+
+  background: linear-gradient(
+    150deg,
+    #a9d4f3 0%,
+    #d9eaf9 50%,
+    #f8dde9 100%
+  );
+
+  border: 2px solid #3c719c;
+  border-radius: 22px;
+
+  box-shadow: 0 14px 35px rgba(53, 87, 135, 0.22);
+
+  text-align: center;
+  color: #2f608a;
+
+  animation: goalPopupAppear 0.35s ease-out;
+}
+
+@keyframes goalPopupAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* 21.C - FADED ANIMATED SNOWFLAKES */
+
+.goal-snow {
+  position: absolute;
+  z-index: -1;
+
+  color: #6e9dc9;
+  line-height: 1;
+  pointer-events: none;
+
+  animation: snowFade 4.5s ease-in-out infinite;
+}
+
+.goal-snow-1 {
+  top: 17%;
+  left: 5%;
+  font-size: 65px;
+  animation-delay: 0s;
+}
+
+.goal-snow-2 {
+  top: 43%;
+  right: -8%;
+  font-size: 98px;
+  animation-delay: 1.4s;
+}
+
+.goal-snow-3 {
+  bottom: 5%;
+  left: 22%;
+  font-size: 48px;
+  animation-delay: 2.7s;
+}
+
+.goal-snow-4 {
+  top: 6%;
+  right: 14%;
+  font-size: 28px;
+  animation-delay: 0.8s;
+}
+
+@keyframes snowFade {
+  0%, 100% {
+    opacity: 0.025;
+    transform: scale(0.9) rotate(-7deg);
+  }
+
+  50% {
+    opacity: 0.19;
+    transform: scale(1.08) rotate(8deg);
+  }
+}
+
+
+/* 21.D - CLOSE BUTTON */
+
+.goal-popup-close {
+  position: absolute;
+  top: 7px;
+  right: 11px;
+
+  padding: 0 5px;
+  border: none;
+  background: transparent;
+
+  color: #3c719c;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+
+/* 21.E - CHECK MARK */
+
+.goal-popup-check {
+  display: grid;
+  place-items: center;
+
+  width: 46px;
+  height: 46px;
+  margin: 13px auto 11px;
+
+  border: 2px solid #3c719c;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.65);
+  color: #2f608a;
+
+  font-size: 27px;
+  font-weight: 800;
+}
+
+
+/* 21.F - TITLE */
+
+.goal-popup h2 {
+  margin: 0 0 13px;
+
+  color: #2f608a;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+
+/* 21.G - GOAL COUNT */
+
+.goal-popup-count {
+  color: #2f608a;
+  font-size: 27px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* 21.H - PROGRESS BAR */
+
+.goal-popup-progress {
+  height: 6px;
+  margin: 12px 3px 7px;
+
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.goal-popup-fill {
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    #619ccc,
+    #d59fce
+  );
+}
+
+.goal-popup-percent {
+  color: #2f608a;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+
+/* 21.I - DONE BUTTON */
+
+.goal-popup-button {
+  display: block;
+  width: 100%;
+
+  margin-top: 17px;
+  padding: 11px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(
+    90deg,
+    #518fc3,
+    #dca2c9
+  );
+
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.goal-popup-button:hover {
+  filter: brightness(1.07);
+}
+
+
+/* 21.J - REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .goal-snow {
+    animation: none;
+    opacity: 0.12;
+  }
+
+  .goal-popup {
+    animation: none;
+  }
+}
+
