@@ -248,6 +248,38 @@ goalClose?.addEventListener('click', closeGoalPopup);
 // Nút Done
 goalDone?.addEventListener('click', closeGoalPopup);
 
+/* ==========================================
+   START AGAIN - RESET GOAL
+   ========================================== */
+
+const goalRestart = document.getElementById('goal-popup-restart');
+
+goalRestart?.addEventListener('click', () => {
+
+  // Reset counter
+  goalCount = 0;
+
+  // Cho phép popup xuất hiện ở vòng tiếp theo
+  goalPopupShown = false;
+
+  // Lưu tiến độ mới
+  try {
+    localStorage.setItem(STORAGE_KEY, '0');
+  } catch {
+    // Tiếp tục nếu trình duyệt không cho lưu
+  }
+
+  // Cập nhật 0 / 2000 và mở khóa Generate
+  updateGoal();
+
+  // Đóng popup
+  closeGoalPopup();
+
+  // Tạo caption đầu tiên cho vòng mới
+  generate();
+
+});
+
 // Bấm Escape để đóng
 document.addEventListener('keydown', (e) => {
   if (
