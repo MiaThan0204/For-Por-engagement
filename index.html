@@ -402,6 +402,67 @@
 
   </div>
 
+<!-- =====================================
+     10C. GOAL COMPLETED POPUP
+     ===================================== -->
+
+<div class="goal-modal" id="goal-modal" hidden>
+
+  <div
+    class="goal-popup"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="goal-popup-title"
+  >
+
+    <!-- Faded animated snowflakes -->
+    <span class="goal-snow goal-snow-1" aria-hidden="true">❄</span>
+    <span class="goal-snow goal-snow-2" aria-hidden="true">❄</span>
+    <span class="goal-snow goal-snow-3" aria-hidden="true">❄</span>
+    <span class="goal-snow goal-snow-4" aria-hidden="true">❄</span>
+
+    <!-- Close -->
+    <button
+      class="goal-popup-close"
+      id="goal-popup-close"
+      type="button"
+      aria-label="Close popup"
+    >×</button>
+
+    <!-- Check mark -->
+    <div class="goal-popup-check" aria-hidden="true">
+      ✓
+    </div>
+
+    <h2 id="goal-popup-title">
+      Goal Completed!
+    </h2>
+
+    <div class="goal-popup-count">
+      500 / 500
+    </div>
+
+    <!-- Full progress bar -->
+    <div class="goal-popup-progress">
+      <div class="goal-popup-fill"></div>
+    </div>
+
+    <div class="goal-popup-percent">
+      100% COMPLETE
+    </div>
+
+    <button
+      class="goal-popup-button"
+      id="goal-popup-done"
+      type="button"
+    >
+      Done
+    </button>
+
+  </div>
+
+</div>
+
   <!-- =====================================
        11. CONNECT JAVASCRIPT
        ===================================== -->
