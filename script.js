@@ -180,10 +180,7 @@ generateBtn.innerHTML = done
     '<span>Goal Completed!</span>'
   : '<span class="generate-icon" aria-hidden="true">↻</span>' +
     '<span>Generate another caption</span>';
-
-
-
-
+}
 
 function addToGoal() {
 
@@ -444,22 +441,16 @@ document.getElementById('copy').addEventListener(
       // Lấy nút Copy
       const b = document.getElementById('copy');
 
+      // Hiển thị thông báo thành công
+      b.innerHTML =
+        '<i class="bi bi-check2" aria-hidden="true"></i>' +
+        '<span>Copied!</span>';
 
-// Hiển thị thông báo thành công
-b.innerHTML =
-  '<i class="bi bi-check2" aria-hidden="true"></i>' +
-  '<span>Copied!</span>';
-
-// Sau 1.7 giây khôi phục icon Copy
-setTimeout(() => {
-  b.innerHTML =
-    '<i class="bi bi-files" aria-hidden="true"></i>' +
-    '<span>Copy caption</span>';
-}, 1700);
-
-
-        b.textContent = '▢  Copy caption';
-
+      // Sau 1.7 giây khôi phục icon Copy
+      setTimeout(() => {
+        b.innerHTML =
+          '<i class="bi bi-files" aria-hidden="true"></i>' +
+          '<span>Copy caption</span>';
       }, 1700);
 
     } catch {
@@ -473,7 +464,6 @@ setTimeout(() => {
 
   }
 );
-
 
 /* ==========================================
    PHẦN 8: NÚT POST ON X / OPEN INSTAGRAM
