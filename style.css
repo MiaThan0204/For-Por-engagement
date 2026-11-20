@@ -1784,3 +1784,221 @@ body {
   background: rgba(255, 255, 255, 0.95);
 }
 
+/* ==========================================
+   CSS-24 - ICE ROSE 3D ACTION BUTTONS
+   ========================================== */
+
+/* 24.A - GENERATE BUTTON */
+
+#generate.primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 100%;
+  min-height: 58px;
+  padding: 13px 18px;
+
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  border-radius: 999px;
+
+  background: linear-gradient(
+    180deg,
+    #83c9f6 0%,
+    #58ace9 52%,
+    #4196dc 100%
+  );
+
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.1px;
+
+  box-shadow:
+    0 5px 0 #76b5e5,
+    0 10px 18px rgba(66, 132, 194, 0.23),
+    inset 0 2px 3px rgba(255, 255, 255, 0.28);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+/* Original refresh icon */
+
+#generate .generate-icon {
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Hover: button rises slightly */
+
+#generate.primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  filter: brightness(1.035);
+
+  box-shadow:
+    0 7px 0 #76b5e5,
+    0 13px 22px rgba(66, 132, 194, 0.26),
+    inset 0 2px 3px rgba(255, 255, 255, 0.32);
+}
+
+/* Press: button moves down */
+
+#generate.primary:active:not(:disabled) {
+  transform: translateY(4px);
+
+  box-shadow:
+    0 1px 0 #76b5e5,
+    0 4px 9px rgba(66, 132, 194, 0.18);
+}
+
+#generate.primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* ==========================================
+   24.B - COPY AND POST BUTTONS
+   ========================================== */
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+
+  margin-top: 18px;
+}
+
+.actions .secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 51px;
+  padding: 11px 10px;
+
+  border: 1.5px solid #b5daf9;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f3f9ff 100%
+  );
+
+  color: #245b9b;
+  font-size: 13px;
+  font-weight: 750;
+
+  box-shadow:
+    0 4px 0 #c0dff8,
+    0 8px 13px rgba(76, 137, 190, 0.13),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+/* Button icons */
+
+.actions .secondary i {
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+/* X logo */
+
+#post .bi-twitter-x {
+  color: #111827;
+}
+
+/* Hover */
+
+.actions .secondary:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 6px 0 #c0dff8,
+    0 11px 17px rgba(76, 137, 190, 0.17);
+}
+
+/* Press */
+
+.actions .secondary:active:not(:disabled) {
+  transform: translateY(3px);
+
+  box-shadow:
+    0 1px 0 #c0dff8,
+    0 3px 7px rgba(76, 137, 190, 0.12);
+}
+
+/* Keyboard focus */
+
+#generate:focus-visible,
+.actions .secondary:focus-visible {
+  outline: 3px solid #356eaa;
+  outline-offset: 4px;
+}
+
+
+/* ==========================================
+   24.C - MOBILE RESPONSIVE
+   ========================================== */
+
+@media (max-width: 480px) {
+
+  #generate.primary {
+    min-height: 54px;
+    font-size: 13px;
+    gap: 7px;
+    padding: 12px 10px;
+  }
+
+  #generate .generate-icon {
+    font-size: 23px;
+  }
+
+  .actions {
+    gap: 9px;
+  }
+
+  .actions .secondary {
+    min-height: 49px;
+    padding: 10px 7px;
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .actions .secondary i {
+    font-size: 16px;
+  }
+
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  #generate.primary,
+  .actions .secondary {
+    transition: none;
+  }
+}
+
