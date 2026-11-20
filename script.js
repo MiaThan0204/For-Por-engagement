@@ -213,8 +213,8 @@ const goalModal = document.getElementById('goal-modal');
 const goalClose = document.getElementById('goal-popup-close');
 const goalDone = document.getElementById('goal-popup-done');
 
-// Chỉ hiện khi vừa đạt 500/500
-let goalPopupShown = goalCount >= GOAL;
+// Chỉ hiện khi vừa đạt 2000/
+let goalPopupShown = false;
 
 function checkGoalCompleted() {
 
@@ -496,6 +496,8 @@ generate();
 
 // Hiển thị số đếm đã lưu khi mở website
 updateGoal();
+// Nếu đã đạt mục tiêu từ trước thì hiện popup để có nút Start Again
+checkGoalCompleted();
 
 /* ==========================================
    PHẦN 10: LINK VAULT (DANH SÁCH LINK CHO FAN)
