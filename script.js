@@ -173,7 +173,9 @@ function updateGoal() {
   const generateBtn = document.getElementById('generate');
 
   generateBtn.disabled = done;
-
+  // Hiện nút Start again khi đã đạt mục tiêu
+  const restartBtn = document.getElementById('restart-goal');
+  if (restartBtn) restartBtn.hidden = !done;
  
 generateBtn.innerHTML = done
   ? '<span class="generate-icon" aria-hidden="true">✓</span>' +
@@ -251,7 +253,8 @@ goalDone?.addEventListener('click', closeGoalPopup);
 
 const goalRestart = document.getElementById('goal-popup-restart');
 
-goalRestart?.addEventListener('click', () => {
+// Hàm bắt đầu lại từ 0 (dùng chung cho 2 nút Start Again)
+function restartGoal() {
 
   // Reset counter
   goalCount = 0;
@@ -266,28 +269,25 @@ goalRestart?.addEventListener('click', () => {
     // Tiếp tục nếu trình duyệt không cho lưu
   }
 
-  // Cập nhật 0 / 2000 và mở khóa Generate
+  // Cập nhật 0 / 2000, mở khóa Generate, ẩn nút Start again
   updateGoal();
 
-  // Đóng popup
+  // Đóng popup (nếu đang mở)
   closeGoalPopup();
 
   // Tạo caption đầu tiên cho vòng mới
+  previous = '';
   generate();
 
-});
+}
 
-// Bấm Escape để đóng
-document.addEventListener('keydown', (e) => {
-  if (
-    e.key === 'Escape' &&
-    goalModal &&
-    !goalModal.hidden
-  ) {
-    closeGoalPopup();
-  }
-});
+// Nút Start Again trong popup
+goalRestart?.addEventListener('click', restartGoal);
 
+// Nút Start again trên trang chính
+document
+  .getElementById('restart-goal')
+  ?.addEventListener('click', restartGoal);
 
 /* ==========================================
    PHẦN 3: HÀM CHỌN CÂU NGẪU NHIÊN
