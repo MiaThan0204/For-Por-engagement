@@ -126,7 +126,7 @@ const hint = document.getElementById('hint');
    ========================================== */
 
 // Mục tiêu: số caption muốn tạo (đổi số này nếu muốn)
-const GOAL = 500;
+const GOAL = 00;
 
 // Tên dùng để lưu số đếm trong trình duyệt
 const STORAGE_KEY = 'forPorGoalCount';
@@ -151,41 +151,58 @@ try {
 // Cập nhật chữ và thanh tiến độ
 function updateGoal() {
 
-  // Phần trăm thật, tối đa 100%
-  const percent = Math.min(100, (goalCount / GOAL) * 100);
+  // Không cho bộ đếm vượt quá 1000
+  goalCount = Math.min(GOAL, Math.max(0, goalCount));
 
-  // Làm tròn 1 chữ số thập phân (vd: 0.4%)
+  const percent = (goalCount / GOAL) * 100;
   const shown = Number(percent.toFixed(1));
 
   goalCountEl.textContent = goalCount + ' / ' + GOAL;
   goalPercentEl.textContent = shown + '%';
   goalFill.style.width = percent + '%';
-  goalBar.setAttribute('aria-valuenow', String(Math.round(percent)));
 
-  // Đạt mục tiêu thì đổi màu và chữ
+  goalBar.setAttribute(
+    'aria-valuenow',
+    String(Math.round(percent))
+  );
+
   const done = goalCount >= GOAL;
+
   goalBox.classList.toggle('done', done);
   goalLabel.textContent = done ? 'YOUR GOAL 🎉' : 'YOUR GOAL';
+
+  // Khóa nút Generate khi đạt 1000
+  const generateBtn = document.getElementById('generate');
+
+  generateBtn.disabled = done;
+
+  generateBtn.textContent = done
+    ? '✓ Goal Completed!'
+    : '↻  Generate another caption';
 
 }
 
 
+
+
 function addToGoal() {
 
-  // Cộng thêm 1 caption
+  // Không cho vượt quá 2000
+  if (goalCount >= GOAL) {
+    return;
+  }
+
   goalCount++;
 
-  // Lưu tiến độ
   try {
     localStorage.setItem(STORAGE_KEY, String(goalCount));
   } catch {
-    // Vẫn tiếp tục đếm nếu không thể lưu
+    // Vẫn hoạt động nếu không lưu được
   }
 
-  // Cập nhật thanh tiến độ
   updateGoal();
 
-  // Kiểm tra xem đã đạt 500/500 chưa
+  // Hiện popup khi vừa đạt 2000
   checkGoalCompleted();
 
 }
@@ -265,6 +282,9 @@ function pick(a) {
    ========================================== */
 
 function generate() {
+
+  // Không tạo caption mới sau khi đạt 2000
+  if (goalCount >= GOAL) return;
 
   let s;
   let attempts = 0;
@@ -354,6 +374,7 @@ document.querySelectorAll('.tab').forEach(b => {
 });
 
 
+
 /* ==========================================
    PHẦN 6: NÚT GENERATE ANOTHER CAPTION
    ========================================== */
@@ -362,15 +383,19 @@ document.getElementById('generate').addEventListener(
   'click',
   () => {
 
+    // Đã đạt 2000 thì dừng
+    if (goalCount >= GOAL) {
+      return;
+    }
+
     // Tạo caption mới
     generate();
 
-    // Cộng 1 vào mục tiêu
+    // Cộng tiến độ
     addToGoal();
 
   }
 );
-
 
 /* ==========================================
    PHẦN 7: NÚT COPY CAPTION
