@@ -118,8 +118,6 @@ const captionEl = document.getElementById('caption');
 // Lấy nút Post
 const postButton = document.getElementById('post');
 
-// Lấy dòng hướng dẫn bên dưới các nút
-const hint = document.getElementById('hint');
 
 /* ==========================================
    PHẦN 2B: YOUR GOAL (ĐẾM SỐ CAPTION ĐÃ TẠO)
@@ -176,11 +174,13 @@ function updateGoal() {
 
   generateBtn.disabled = done;
 
-  generateBtn.textContent = done
-    ? '✓ Goal Completed!'
-    : '↻  Generate another caption';
+ 
+generateBtn.innerHTML = done
+  ? '<span class="generate-icon" aria-hidden="true">✓</span>' +
+    '<span>Goal Completed!</span>'
+  : '<span class="generate-icon" aria-hidden="true">↻</span>' +
+    '<span>Generate another caption</span>';
 
-}
 
 
 
@@ -383,17 +383,14 @@ document.querySelectorAll('.tab').forEach(b => {
 
     });
 
-    // Đổi tên nút Post
-    postButton.textContent =
-      platform === 'x'
-        ? '↗  Post on X'
-        : '↗  Open Instagram';
 
-    // Đổi dòng hướng dẫn
-    hint.textContent =
-      platform === 'x'
-        ? 'X opens with your caption prefilled.'
-        : 'Copy your caption, then paste it into an Instagram comment.';
+/* Đổi icon và chữ nút Post theo nền tảng */
+
+postButton.innerHTML =
+  platform === 'x'
+    ? '<i class="bi bi-twitter-x" aria-hidden="true"></i><span>Post on X ↗</span>'
+    : '<i class="bi bi-instagram" aria-hidden="true"></i><span>Open Instagram ↗</span>';
+
 
     // Reset caption trước đó
     previous = '';
@@ -447,11 +444,19 @@ document.getElementById('copy').addEventListener(
       // Lấy nút Copy
       const b = document.getElementById('copy');
 
-      // Hiển thị thông báo thành công
-      b.textContent = '✓  Copied!';
 
-      // Sau 1.7 giây đổi về tên ban đầu
-      setTimeout(() => {
+// Hiển thị thông báo thành công
+b.innerHTML =
+  '<i class="bi bi-check2" aria-hidden="true"></i>' +
+  '<span>Copied!</span>';
+
+// Sau 1.7 giây khôi phục icon Copy
+setTimeout(() => {
+  b.innerHTML =
+    '<i class="bi bi-files" aria-hidden="true"></i>' +
+    '<span>Copy caption</span>';
+}, 1700);
+
 
         b.textContent = '▢  Copy caption';
 
