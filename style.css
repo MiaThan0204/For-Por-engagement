@@ -1755,3 +1755,32 @@ body {
     opacity: 0.15;
   }
 }
+
+/* ==========================================
+   CSS-23 - START AGAIN BUTTON
+   ========================================== */
+
+.goal-popup-restart {
+  display: block;
+  width: 100%;
+
+  margin-top: 8px;
+  padding: 11px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  border: 1.5px solid #659bc4;
+  border-radius: 10px;
+
+  color: #32658f;
+  font-size: 13px;
+  font-weight: 800;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.goal-popup-restart:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
