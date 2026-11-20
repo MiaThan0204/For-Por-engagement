@@ -126,7 +126,7 @@ const hint = document.getElementById('hint');
    ========================================== */
 
 // Mục tiêu: số caption muốn tạo (đổi số này nếu muốn)
-const GOAL = 00;
+const GOAL = 2000;
 
 // Tên dùng để lưu số đếm trong trình duyệt
 const STORAGE_KEY = 'forPorGoalCount';
