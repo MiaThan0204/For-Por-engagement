@@ -169,20 +169,79 @@ function updateGoal() {
 
 }
 
-// Cộng thêm 1 và lưu lại
+
 function addToGoal() {
 
+  // Cộng thêm 1 caption
   goalCount++;
 
+  // Lưu tiến độ
   try {
     localStorage.setItem(STORAGE_KEY, String(goalCount));
   } catch {
-    // Nếu trình duyệt chặn lưu thì vẫn đếm bình thường trong phiên này
+    // Vẫn tiếp tục đếm nếu không thể lưu
   }
 
+  // Cập nhật thanh tiến độ
   updateGoal();
 
+  // Kiểm tra xem đã đạt 500/500 chưa
+  checkGoalCompleted();
+
 }
+
+
+/* ==========================================
+   PHẦN 2C: ICE ROSE GOAL POPUP
+   ========================================== */
+
+const goalModal = document.getElementById('goal-modal');
+const goalClose = document.getElementById('goal-popup-close');
+const goalDone = document.getElementById('goal-popup-done');
+
+// Chỉ hiện khi vừa đạt 500/500
+let goalPopupShown = goalCount >= GOAL;
+
+function checkGoalCompleted() {
+
+  if (
+    goalCount >= GOAL &&
+    !goalPopupShown &&
+    goalModal
+  ) {
+    goalPopupShown = true;
+    goalModal.hidden = false;
+
+    // Đưa focus vào nút Done
+    goalDone?.focus();
+  }
+
+}
+
+// Đóng popup
+function closeGoalPopup() {
+  if (goalModal) {
+    goalModal.hidden = true;
+  }
+}
+
+// Nút X
+goalClose?.addEventListener('click', closeGoalPopup);
+
+// Nút Done
+goalDone?.addEventListener('click', closeGoalPopup);
+
+// Bấm Escape để đóng
+document.addEventListener('keydown', (e) => {
+  if (
+    e.key === 'Escape' &&
+    goalModal &&
+    !goalModal.hidden
+  ) {
+    closeGoalPopup();
+  }
+});
+
 
 /* ==========================================
    PHẦN 3: HÀM CHỌN CÂU NGẪU NHIÊN
