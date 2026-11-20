@@ -1528,3 +1528,230 @@ footer small {
   }
 }
 
+
+/* ==========================================
+   CSS-22 - ICE ROSE SNOW DREAM BACKGROUND
+   ========================================== */
+
+/* 22.A - BLUE DOMINANT MESH GRADIENT */
+
+html {
+  min-height: 100%;
+  background: #eaf4ff;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      ellipse at 10% 12%,
+      rgba(147, 203, 250, 0.88),
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse at 82% 20%,
+      rgba(250, 198, 225, 0.55),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 62% 53%,
+      rgba(160, 211, 255, 0.82),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 16% 78%,
+      rgba(248, 201, 228, 0.50),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 88% 92%,
+      rgba(165, 214, 255, 0.88),
+      transparent 58%
+    ),
+    #eaf4ff;
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* 22.B - DECORATIONS BEHIND WEBSITE */
+
+.sky-decor {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+}
+
+/* 22.C - ANIMATED SNOWFLAKES */
+
+.sky-snow {
+  position: absolute;
+  display: block;
+
+  color: #ffffff;
+  line-height: 1;
+  opacity: 0;
+
+  animation: iceSnowFloat 9s ease-in-out infinite;
+}
+
+.snow-1 {
+  top: 7%;
+  left: 8%;
+  font-size: 75px;
+  animation-delay: 0s;
+}
+
+.snow-2 {
+  top: 18%;
+  right: 10%;
+  font-size: 105px;
+  animation-delay: -3s;
+}
+
+.snow-3 {
+  top: 39%;
+  left: 4%;
+  font-size: 95px;
+  animation-delay: -5s;
+}
+
+.snow-4 {
+  top: 53%;
+  right: 15%;
+  font-size: 70px;
+  animation-delay: -1s;
+}
+
+.snow-5 {
+  top: 75%;
+  left: 12%;
+  font-size: 110px;
+  animation-delay: -4s;
+}
+
+.snow-6 {
+  top: 84%;
+  right: 8%;
+  font-size: 85px;
+  animation-delay: -6s;
+}
+
+.snow-7 {
+  top: 29%;
+  left: 55%;
+  font-size: 35px;
+  animation-delay: -2s;
+}
+
+.snow-8 {
+  top: 65%;
+  right: 40%;
+  font-size: 45px;
+  animation-delay: -7s;
+}
+
+@keyframes iceSnowFloat {
+  0%, 100% {
+    opacity: 0.025;
+    transform: translateY(8px) rotate(-7deg) scale(0.94);
+  }
+
+  50% {
+    opacity: 0.22;
+    transform: translateY(-10px) rotate(7deg) scale(1.05);
+  }
+}
+
+/* 22.D - SOFT TWINKLING STARS */
+
+.sky-star {
+  color: rgba(255, 255, 255, 0.85);
+
+  animation: iceStarTwinkle 6s ease-in-out infinite;
+}
+
+.star-2,
+.star-4 {
+  animation-delay: -2.5s;
+}
+
+.star-3,
+.star-5 {
+  animation-delay: -4s;
+}
+
+@keyframes iceStarTwinkle {
+  0%, 100% {
+    opacity: 0.12;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: scale(1.12);
+  }
+}
+
+/* 22.E - FLOATING CLOUDS */
+
+.sky-cloud {
+  color: rgba(255, 255, 255, 0.65);
+
+  animation: iceCloudDrift 14s ease-in-out infinite;
+}
+
+.cloud-2 {
+  animation-delay: -5s;
+}
+
+.cloud-3 {
+  animation-delay: -9s;
+}
+
+@keyframes iceCloudDrift {
+  0%, 100% {
+    opacity: 0.18;
+    transform: translateX(-9px);
+  }
+
+  50% {
+    opacity: 0.42;
+    transform: translateX(9px);
+  }
+}
+
+/* 22.F - MOBILE */
+
+@media (max-width: 600px) {
+  .sky-snow {
+    font-size: 45px;
+  }
+
+  .snow-2,
+  .snow-5 {
+    font-size: 65px;
+  }
+}
+
+/* 22.G - REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .sky-snow,
+  .sky-star,
+  .sky-cloud {
+    animation: none;
+    opacity: 0.15;
+  }
+}
