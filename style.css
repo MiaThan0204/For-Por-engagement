@@ -135,7 +135,6 @@ button:focus-visible {
    7. X AND INSTAGRAM TABS
    ========================================== */
 
-
 /* 7.A - BUTTON LAYOUT */
 
 .tabs {
@@ -145,7 +144,6 @@ button:focus-visible {
   margin-bottom: 20px;
 }
 
-
 /* 7.B - GENERAL BUTTON STYLE */
 
 .tabs .tab {
@@ -154,19 +152,19 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-
   gap: 12px;
 
   min-height: 58px;
-padding: 10px 12px;
-   
+  padding: 10px 12px;
+
   background: #ffffff;
-  border: 2px solid #e0e8f2;
-  border-radius: 20px;
+  border: 2px solid #c5ccd6;
+  border-radius: 999px;
 
   color: #35485c;
-
   cursor: pointer;
+
+  box-shadow: 0 4px 12px rgba(75, 95, 125, 0.08);
 
   transition:
     background 0.2s ease,
@@ -175,14 +173,16 @@ padding: 10px 12px;
     box-shadow 0.2s ease;
 }
 
-
-/* 7.C - HOVER EFFECT */
+/* 7.C - HOVER AND CLICK EFFECT */
 
 .tabs .tab:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 22px rgba(41, 79, 112, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 16px rgba(41, 79, 112, 0.16);
 }
 
+.tabs .tab:active {
+  transform: translateY(1px);
+}
 
 /* 7.D - ICONS AND TEXT */
 
@@ -190,7 +190,6 @@ padding: 10px 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   font-size: 23px;
   line-height: 1;
 }
@@ -209,30 +208,34 @@ padding: 10px 12px;
   font-size: 13px;
 }
 
-
 /* 7.E - X BUTTON */
 
 .tabs .tab-x {
   background: #ffffff;
-  border-color: #dedede;
-  color: #111111;
+  border-color: #c5ccd6;
+  color: #35485c;
 }
 
 .tabs .tab-x.selected {
-  background: #111111;
+  background: linear-gradient(
+    180deg,
+    #3a3a3d 0%,
+    #0b0b0c 100%
+  );
+
   border-color: #111111;
   color: #ffffff;
 
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.25);
 }
-
 
 /* 7.F - INSTAGRAM BUTTON */
 
 .tabs .tab-ig {
-  background: #fffafd;
-  border-color: #f3d4e5;
-  color: #a23b82;
+  background: #ffffff;
+  border-color: #c5ccd6;
+  color: #35485c;
 }
 
 .tabs .tab-ig.selected {
@@ -244,20 +247,14 @@ padding: 10px 12px;
     #f5a06b 100%
   );
 
-  border-color: #d76da9;
+  border-color: #cf5ca8;
   color: #ffffff;
 
   box-shadow:
-    0 8px 24px rgba(210, 91, 158, 0.25);
+    0 4px 12px rgba(210, 91, 158, 0.28);
 }
 
-.tabs .tab-ig:not(.selected):hover {
-  background: #fff0f8;
-  border-color: #e8a8cc;
-}
-
-
-/* 7.G - ICON COLORS */
+/* 7.G - ICON COLORS AND CHECK */
 
 .tabs .tab-x .platform-icon {
   color: #111111;
@@ -275,7 +272,6 @@ padding: 10px 12px;
   opacity: 1;
 }
 
-
 /* 7.H - MOBILE */
 
 @media (max-width: 600px) {
@@ -288,7 +284,7 @@ padding: 10px 12px;
     min-height: 54px;
     gap: 7px;
     padding: 9px 6px;
-    border-radius: 13px;
+    border-radius: 999px;
   }
 
   .platform-icon {
@@ -306,6 +302,7 @@ padding: 10px 12px;
   }
 
 }
+
 
 /* ==========================================
    8. CAPTION PREVIEW BOX
