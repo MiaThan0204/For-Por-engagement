@@ -291,46 +291,106 @@
 
 </div>
 
-
     <!-- ===================================
          9B. LINK VAULT
          =================================== -->
 
     <section
-      class="links"
+      class="vault"
       aria-label="Link vault"
     >
 
-      <div class="links-header">
-        <span>LINK VAULT 🔗</span>
-        <span id="links-progress">0 / 0 done</span>
+      <!-- Tiêu đề nhỏ -->
+      <h2 class="vault-heading">
+        <i class="bi bi-link-45deg" aria-hidden="true"></i>
+        <span>Link Vault</span>
+      </h2>
+
+
+      <!-- Chọn X hoặc Instagram -->
+      <div
+        class="vault-tabs"
+        role="group"
+        aria-label="Choose link platform"
+      >
+
+        <button
+          type="button"
+          class="vault-tab selected"
+          data-vtab="x"
+          aria-pressed="true"
+        >
+          <i class="bi bi-twitter-x" aria-hidden="true"></i>
+          <span>X / Twitter Links</span>
+        </button>
+
+        <button
+          type="button"
+          class="vault-tab"
+          data-vtab="ig"
+          aria-pressed="false"
+        >
+          <i class="bi bi-instagram" aria-hidden="true"></i>
+          <span>Instagram Links</span>
+        </button>
+
       </div>
 
-      <div class="goal-bar" role="presentation">
-        <div class="goal-fill" id="links-fill"></div>
+
+      <!-- Khung danh sách -->
+      <div class="vault-panel">
+
+        <div class="vault-panel-head">
+
+          <div class="vault-panel-title">
+            <span
+              class="vault-panel-icon"
+              id="vault-panel-icon"
+            ><i class="bi bi-twitter-x" aria-hidden="true"></i></span>
+            <span id="vault-panel-name">X / Twitter Links</span>
+          </div>
+
+          <button
+            type="button"
+            class="vault-next"
+            id="next-link"
+          >
+            →  Open next link
+          </button>
+
+          <!-- Tiến độ: 0 / 100 done (0%) -->
+          <div class="vault-progress">
+            <span id="links-progress">0 / 0 done (0%)</span>
+            <div class="vault-bar" role="presentation">
+              <div class="vault-fill" id="links-fill"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Danh sách link (JavaScript vẽ vào đây, có thanh cuộn) -->
+        <ul id="link-list" class="link-list"></ul>
+
+        <!-- Chọn tất cả -->
+        <div class="vault-foot">
+
+          <label class="vault-check-all">
+            <input
+              type="checkbox"
+              class="link-check"
+              id="select-all"
+            >
+            <span>Select all</span>
+          </label>
+
+          <span id="selected-count">0 selected</span>
+
+        </div>
+
       </div>
-
-      <button
-        id="next-link"
-        class="primary"
-        type="button"
-      >
-        →  Open next link
-      </button>
-
-      <ul id="link-list" class="link-list"></ul>
-
-      <button
-        id="reset-links"
-        class="reset-links"
-        type="button"
-        hidden
-      >
-        Reset progress
-      </button>
 
     </section>
-    
+  
     <!-- ===================================
          10. WEBSITE FOOTER
          =================================== -->
