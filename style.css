@@ -919,14 +919,33 @@ footer small {
   color: #d14b91;
 }
 
-.link-item.is-next .link-num {
+
+/* Link tiếp theo: X dùng nền đen */
+.vault.is-x .link-item.is-next .link-num {
   background: #111111;
   color: #ffffff;
 }
 
-.link-item.is-next .link-num i {
+.vault.is-x .link-item.is-next .link-num i {
   color: #ffffff;
 }
+
+/* Link tiếp theo: Instagram dùng gradient hồng tím */
+.vault.is-ig .link-item.is-next .link-num {
+  background: linear-gradient(
+    125deg,
+    #a85bd4 0%,
+    #cf5ca8 35%,
+    #ec6999 65%,
+    #f5a06b 100%
+  );
+  color: #ffffff;
+}
+
+.vault.is-ig .link-item.is-next .link-num i {
+  color: #ffffff;
+}
+
 
 
 
