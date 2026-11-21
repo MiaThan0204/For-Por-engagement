@@ -75,11 +75,13 @@ function updateGoal() {
   const restartBtn = document.getElementById('restart-goal');
   if (restartBtn) restartBtn.hidden = !done;
  
+
 generateBtn.innerHTML = done
   ? '<span class="generate-icon" aria-hidden="true">✓</span>' +
     '<span>Goal Completed!</span>'
   : '<span class="generate-icon" aria-hidden="true">↻</span>' +
-    '<span>Generate another caption</span>';
+    '<span>Generate Caption</span>';
+
 }
 
 function addToGoal() {
