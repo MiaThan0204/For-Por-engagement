@@ -291,12 +291,13 @@
 
 </div>
 
-    <!-- ===================================
+      <!-- ===================================
          9B. LINK VAULT
          =================================== -->
 
     <section
-      class="vault"
+      class="vault is-x"
+      id="vault"
       aria-label="Link vault"
     >
 
@@ -342,12 +343,12 @@
 
         <div class="vault-panel-head">
 
-          <div class="vault-panel-title">
-            <span
-              class="vault-panel-icon"
-              id="vault-panel-icon"
-            ><i class="bi bi-twitter-x" aria-hidden="true"></i></span>
-            <span id="vault-panel-name">X / Twitter Links</span>
+          <!-- Tiến độ: 0 / 100 done (0%) -->
+          <div class="vault-progress">
+            <span id="links-progress">0 / 0 done (0%)</span>
+            <div class="vault-bar" role="presentation">
+              <div class="vault-fill" id="links-fill"></div>
+            </div>
           </div>
 
           <button
@@ -357,14 +358,6 @@
           >
             →  Open next link
           </button>
-
-          <!-- Tiến độ: 0 / 100 done (0%) -->
-          <div class="vault-progress">
-            <span id="links-progress">0 / 0 done (0%)</span>
-            <div class="vault-bar" role="presentation">
-              <div class="vault-fill" id="links-fill"></div>
-            </div>
-          </div>
 
         </div>
 
