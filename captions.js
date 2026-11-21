@@ -26,14 +26,14 @@ const banks = {
 
     // Câu mở đầu
     opening: [
-      "Sending all our love to Por today! 🩵",
-      "Another day, another reason to cheer for Por! ✨",
-      "Por, your journey inspires so many of us. 🐻",
-      "We are always rooting for you, Por! 🩵",
-      "A little reminder of how loved Por is. 💫",
-      "So much appreciation for Por Suppakarn today! 🌷",
-      "Let's fill today with positive energy for Por! ☁️",
-      "Every step forward deserves a celebration, Por! ✨"
+      "Sending all our love to Por today. ",
+      "Another day, another reason to cheer for Por. ",
+      "Por, your journey inspires so many of us. ",
+      "We are always rooting for you, Por! ",
+      "A little reminder of how loved Por is. ",
+      "So much appreciation for Por Suppakarn today. ",
+      "Let's fill today with positive energy for Por. ",
+      "Every step forward deserves a celebration, Por. "
     ],
 
     // Nội dung chính
