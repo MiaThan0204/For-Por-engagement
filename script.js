@@ -498,7 +498,6 @@ generate();
 updateGoal();
 // Nếu đã đạt mục tiêu từ trước thì hiện popup để có nút Start Again
 checkGoalCompleted();
-
 /* ==========================================
    PHẦN 10: LINK VAULT (DANH SÁCH LINK CHO FAN)
    ========================================== */
@@ -506,15 +505,18 @@ checkGoalCompleted();
 // Lấy danh sách link từ file links.js (nếu file lỗi thì dùng danh sách rỗng)
 const linkData = typeof LINKS !== 'undefined' ? LINKS : [];
 
-// Tên dùng để lưu các link fan đã mở
+// Tên dùng để lưu các link fan đã làm xong
 const DONE_KEY = 'forPorLinksDone';
 
-// Lấy các phần tử của danh sách link
+// Lấy các phần tử của khung Link Vault
 const linkListEl = document.getElementById('link-list');
 const linksProgressEl = document.getElementById('links-progress');
 const linksFillEl = document.getElementById('links-fill');
 const nextLinkBtn = document.getElementById('next-link');
-const resetLinksBtn = document.getElementById('reset-links');
+const selectAllEl = document.getElementById('select-all');
+const selectedCountEl = document.getElementById('selected-count');
+const vaultPanelName = document.getElementById('vault-panel-name');
+const vaultPanelIcon = document.getElementById('vault-panel-icon');
 
 // Lấy các phần tử của cửa sổ caption
 const vaultModal = document.getElementById('vault-modal');
@@ -525,10 +527,13 @@ const modalText = document.getElementById('modal-text');
 const modalStatus = document.getElementById('modal-status');
 const modalCopyOpen = document.getElementById('modal-copy-open');
 
-// Link đang được mở trong cửa sổ
+// Tab đang xem: 'x' hoặc 'ig'
+let vaultTab = 'x';
+
+// Link đang được mở trong cửa sổ caption
 let currentLink = null;
 
-// Đọc danh sách link đã mở từ lần trước
+// Đọc danh sách link đã làm xong từ lần trước
 let doneKeys = [];
 
 try {
@@ -548,13 +553,43 @@ function isSafeUrl(url) {
   return typeof url === 'string' && /^https:\/\//i.test(url);
 }
 
-// Lưu lại danh sách đã mở
+// Link thuộc X hay Instagram
+function platOf(link) {
+  return link.platform === 'x' ? 'x' : 'ig';
+}
+
+// Danh sách link của tab đang xem
+function tabLinks() {
+  return linkData.filter(
+    l => isSafeUrl(l.url) && platOf(l) === vaultTab
+  );
+}
+
+// Lưu lại danh sách đã làm xong
 function saveDone() {
   try {
     localStorage.setItem(DONE_KEY, JSON.stringify(doneKeys));
   } catch {
     // Trình duyệt chặn lưu thì vẫn dùng bình thường trong phiên này
   }
+}
+
+// Đánh dấu xong / bỏ đánh dấu cho nhiều link cùng lúc
+function changeDone(links, on) {
+
+  links.forEach(link => {
+
+    const k = keyOf(link);
+    const has = doneKeys.includes(k);
+
+    if (on && !has) doneKeys.push(k);
+    if (!on && has) doneKeys = doneKeys.filter(x => x !== k);
+
+  });
+
+  saveDone();
+  renderLinks();
+
 }
 
 
@@ -615,14 +650,16 @@ function showModal(link) {
 
   currentLink = link;
 
-  modalBadge.textContent = link.platform === 'x' ? '𝕏' : '◎';
+  modalBadge.textContent = platOf(link) === 'x' ? '𝕏' : '◎';
   modalTitle.textContent = link.title || 'Link';
 
-  modalSub.textContent = link.action === 'share'
-    ? 'Auto-matched caption randomized for this post.'
-    : 'Auto-matched comment randomized for this post.';
+  // Share / Quote thì ghi "caption", còn lại ghi "comment"
+  modalSub.textContent =
+    (link.action === 'share' || link.action === 'quote')
+      ? 'Auto-matched caption randomized for this post.'
+      : 'Auto-matched comment randomized for this post.';
 
-  modalText.value = makeCaption(link.platform);
+  modalText.value = makeCaption(platOf(link));
   modalStatus.textContent = '';
 
   vaultModal.hidden = false;
@@ -653,7 +690,7 @@ document.getElementById('modal-random').addEventListener('click', () => {
 
   if (!currentLink) return;
 
-  modalText.value = makeCaption(currentLink.platform);
+  modalText.value = makeCaption(platOf(currentLink));
   modalStatus.textContent = '';
 
 });
@@ -706,47 +743,72 @@ document.getElementById('modal-open-only').addEventListener('click', () => {
 
 
 /* ------------------------------------------
-   Vẽ danh sách link và thanh tiến độ
+   Vẽ khung Link Vault: tab, danh sách, tiến độ
    ------------------------------------------ */
 
 function renderLinks() {
 
-  const valid = linkData.filter(l => isSafeUrl(l.url));
+  const list = tabLinks();
 
-  const doneCount = valid.filter(
+  const doneCount = list.filter(
     l => doneKeys.includes(keyOf(l))
   ).length;
 
-  const percent = valid.length
-    ? (doneCount / valid.length) * 100
+  const percent = list.length
+    ? (doneCount / list.length) * 100
     : 0;
 
-  linksProgressEl.textContent = doneCount + ' / ' + valid.length + ' done';
+  // Tiến độ: 0 / 100 done (0%)
+  linksProgressEl.textContent =
+    doneCount + ' / ' + list.length +
+    ' done (' + Number(percent.toFixed(1)) + '%)';
+
   linksFillEl.style.width = percent + '%';
+
+  // Tên và icon của khung (X hoặc Instagram)
+  vaultPanelName.textContent =
+    vaultTab === 'x' ? 'X / Twitter Links' : 'Instagram Links';
+
+  vaultPanelIcon.innerHTML =
+    vaultTab === 'x'
+      ? '<i class="bi bi-twitter-x" aria-hidden="true"></i>'
+      : '<i class="bi bi-instagram" aria-hidden="true"></i>';
+
+  vaultPanelIcon.classList.toggle('is-ig', vaultTab === 'ig');
+
+  // Nút tab đang chọn
+  document.querySelectorAll('.vault-tab').forEach(t => {
+
+    const on = t.dataset.vtab === vaultTab;
+
+    t.classList.toggle('selected', on);
+    t.setAttribute('aria-pressed', String(on));
+
+  });
 
   // Xóa danh sách cũ rồi vẽ lại
   linkListEl.textContent = '';
 
-  if (valid.length === 0) {
+  if (list.length === 0) {
     const empty = document.createElement('li');
     empty.className = 'link-empty';
     empty.textContent = 'No links yet. Please check back soon 🩵';
     linkListEl.appendChild(empty);
   }
 
-  valid.forEach(link => {
+  list.forEach((link, i) => {
 
     const done = doneKeys.includes(keyOf(link));
 
     const li = document.createElement('li');
     li.className = 'link-item' + (done ? ' done' : '');
 
-    // Biểu tượng nền tảng
-    const badge = document.createElement('span');
-    badge.className = 'link-badge';
-    badge.textContent = link.platform === 'x' ? '𝕏' : '◎';
+    // Số thứ tự: 01, 02, 03...
+    const num = document.createElement('span');
+    num.className = 'link-num';
+    num.textContent = String(i + 1).padStart(2, '0');
 
-    // Tên link và loại việc cần làm
+    // Tên link và loại việc cần làm (share, quote, reply, comment...)
     const info = document.createElement('div');
     info.className = 'link-info';
 
@@ -754,7 +816,7 @@ function renderLinks() {
     title.textContent = link.title || 'Link';
 
     const tag = document.createElement('small');
-    tag.textContent = link.action === 'share' ? 'Share' : 'Comment';
+    tag.textContent = link.action || 'comment';
 
     info.appendChild(title);
     info.appendChild(tag);
@@ -763,51 +825,68 @@ function renderLinks() {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'link-open';
-    btn.textContent = done ? '✓ Open again' : 'Open ↗';
+    btn.textContent = 'Open ↗';
     btn.addEventListener('click', () => showModal(link));
 
-    li.appendChild(badge);
+    // Ô tích: đánh dấu đã làm xong
+    const check = document.createElement('input');
+    check.type = 'checkbox';
+    check.className = 'link-check';
+    check.checked = done;
+    check.setAttribute('aria-label', 'Mark as done');
+    check.addEventListener('change', () => changeDone([link], check.checked));
+
+    li.appendChild(num);
     li.appendChild(info);
     li.appendChild(btn);
+    li.appendChild(check);
 
     linkListEl.appendChild(li);
 
   });
 
-  // Nút "Open next link": mở cửa sổ cho link đầu tiên chưa làm
-  const next = valid.find(l => !doneKeys.includes(keyOf(l)));
+  // Nút "Open next link": mở link đầu tiên chưa làm trong tab này
+  const next = list.find(l => !doneKeys.includes(keyOf(l)));
 
   nextLinkBtn.disabled = !next;
   nextLinkBtn.textContent = next
     ? '→  Open next link'
     : '✓  All links done';
 
-  // Chỉ hiện nút Reset khi đã mở ít nhất 1 link
-  resetLinksBtn.hidden = doneCount === 0;
+  // Chân khung: Select all và số link đã chọn
+  selectedCountEl.textContent = doneCount + ' selected';
+  selectAllEl.checked = list.length > 0 && doneCount === list.length;
+  selectAllEl.disabled = list.length === 0;
 
 }
+
+// Bấm tab X / Instagram
+document.querySelectorAll('.vault-tab').forEach(t => {
+
+  t.addEventListener('click', () => {
+
+    vaultTab = t.dataset.vtab;
+    renderLinks();
+
+  });
+
+});
 
 // Bấm "Open next link"
 nextLinkBtn.addEventListener('click', () => {
 
-  const next = linkData.find(
-    l => isSafeUrl(l.url) && !doneKeys.includes(keyOf(l))
-  );
+  const next = tabLinks().find(l => !doneKeys.includes(keyOf(l)));
 
   if (next) showModal(next);
 
 });
 
-// Bấm "Reset progress"
-resetLinksBtn.addEventListener('click', () => {
+// Bấm "Select all": tích hoặc bỏ tích tất cả link trong tab này
+selectAllEl.addEventListener('change', () => {
 
-  if (!confirm('Reset your link progress?')) return;
-
-  doneKeys = [];
-  saveDone();
-  renderLinks();
+  changeDone(tabLinks(), selectAllEl.checked);
 
 });
 
-// Hiển thị danh sách khi mở website
+// Hiển thị khung Link Vault khi mở website
 renderLinks();
