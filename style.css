@@ -2057,9 +2057,10 @@ body {
 
 .caption-actions {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: minmax(0, 210px) minmax(0, 180px);
   gap: 12px;
   align-items: stretch;
+  justify-content: center;
 
   width: 100%;
   margin: 12px 0 28px;
@@ -2115,12 +2116,13 @@ body {
 .caption-actions .actions {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: repeat(2, 34px);
+  grid-template-rows: repeat(2, 32px);
   gap: 6px;
 
   width: 100%;
   margin: 0;
 }
+
 
 /* 24.E - COPY AND POST */
 
@@ -2132,10 +2134,10 @@ body {
 
   width: 100%;
   min-width: 0;
-  height: 34px;
+  height: 32px;
   min-height: 0;
   margin: 0;
-  padding: 5px 8px;
+  padding: 4px 8px;
 
   background: linear-gradient(
     180deg,
@@ -2191,7 +2193,7 @@ body {
 @media (max-width: 480px) {
 
   .caption-actions {
-    grid-template-columns: 0.85fr 1.15fr;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
     gap: 8px;
     margin-bottom: 26px;
   }
@@ -2207,14 +2209,14 @@ body {
   }
 
   .caption-actions .actions {
-    grid-template-rows: repeat(2, 34px);
+    grid-template-rows: repeat(2, 32px);
     gap: 6px;
   }
 
   .caption-actions .secondary {
-    height: 34px;
+    height: 32px;
     min-height: 0;
-    padding: 5px;
+    padding: 4px;
     gap: 4px;
     font-size: 10px;
   }
