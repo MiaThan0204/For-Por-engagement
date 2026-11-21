@@ -498,6 +498,7 @@ generate();
 updateGoal();
 // Nếu đã đạt mục tiêu từ trước thì hiện popup để có nút Start Again
 checkGoalCompleted();
+
 /* ==========================================
    PHẦN 10: LINK VAULT (DANH SÁCH LINK CHO FAN)
    ========================================== */
@@ -513,8 +514,7 @@ const linkListEl = document.getElementById('link-list');
 const linksProgressEl = document.getElementById('links-progress');
 const linksFillEl = document.getElementById('links-fill');
 const nextLinkBtn = document.getElementById('next-link');
-const vaultPanelName = document.getElementById('vault-panel-name');
-const vaultPanelIcon = document.getElementById('vault-panel-icon');
+const vaultEl = document.getElementById('vault');
 
 // Lấy các phần tử của cửa sổ caption
 const vaultModal = document.getElementById('vault-modal');
@@ -610,6 +610,10 @@ function openLink(link) {
 
   if (!isSafeUrl(link.url)) return;
 
+  // Link vừa mở có phải link đang đến lượt không?
+  const before = tabLinks().find(l => !doneKeys.includes(keyOf(l)));
+  const wasNext = !!before && keyOf(before) === keyOf(link);
+
   if (!doneKeys.includes(keyOf(link))) {
     doneKeys.push(keyOf(link));
     saveDone();
@@ -617,7 +621,8 @@ function openLink(link) {
 
   window.open(link.url, '_blank', 'noopener,noreferrer');
 
-  renderLinks();
+  // Nếu mở đúng link đến lượt thì cuộn tới link kế tiếp
+  renderLinks(wasNext);
 
 }
 
@@ -726,7 +731,7 @@ document.getElementById('modal-open-only').addEventListener('click', () => {
    Vẽ khung Link Vault: tab, danh sách, tiến độ
    ------------------------------------------ */
 
-function renderLinks() {
+function renderLinks(scrollToNext = false) {
 
   const list = tabLinks();
 
@@ -745,16 +750,9 @@ function renderLinks() {
 
   linksFillEl.style.width = percent + '%';
 
-  // Tên và icon của khung (X hoặc Instagram)
-  vaultPanelName.textContent =
-    vaultTab === 'x' ? 'X / Twitter Links' : 'Instagram Links';
-
-  vaultPanelIcon.innerHTML =
-    vaultTab === 'x'
-      ? '<i class="bi bi-twitter-x" aria-hidden="true"></i>'
-      : '<i class="bi bi-instagram" aria-hidden="true"></i>';
-
-  vaultPanelIcon.classList.toggle('is-ig', vaultTab === 'ig');
+  // Đổi màu theo tab: X = đen, Instagram = hồng tím
+  vaultEl.classList.toggle('is-x', vaultTab === 'x');
+  vaultEl.classList.toggle('is-ig', vaultTab === 'ig');
 
   // Nút tab đang chọn
   document.querySelectorAll('.vault-tab').forEach(t => {
@@ -765,6 +763,13 @@ function renderLinks() {
     t.setAttribute('aria-pressed', String(on));
 
   });
+
+  // Link đến lượt: link đầu tiên chưa làm trong tab này
+  const next = list.find(l => !doneKeys.includes(keyOf(l)));
+
+  // Nhớ vị trí thanh cuộn để vẽ lại xong không bị nhảy lên đầu
+  const keepScroll = linkListEl.scrollTop;
+  let nextRow = null;
 
   // Xóa danh sách cũ rồi vẽ lại
   linkListEl.textContent = '';
@@ -780,8 +785,15 @@ function renderLinks() {
 
     const done = doneKeys.includes(keyOf(link));
 
+    const isNext = !!next && keyOf(next) === keyOf(link);
+
     const li = document.createElement('li');
-    li.className = 'link-item' + (done ? ' done' : '');
+    li.className =
+      'link-item' +
+      (done ? ' done' : '') +
+      (isNext ? ' is-next' : '');
+
+    if (isNext) nextRow = li;
 
     // Số thứ tự: 01, 02, 03...
     const num = document.createElement('span');
@@ -796,7 +808,7 @@ function renderLinks() {
     title.textContent = link.title || 'Link';
 
     const tag = document.createElement('small');
-    tag.textContent = link.action || 'comment';
+    tag.textContent = (link.action || 'comment') + (isNext ? ' · next' : '');
 
     info.appendChild(title);
     info.appendChild(tag);
@@ -824,9 +836,24 @@ function renderLinks() {
 
   });
 
-  // Nút "Open next link": mở link đầu tiên chưa làm trong tab này
-  const next = list.find(l => !doneKeys.includes(keyOf(l)));
+  // Giữ nguyên vị trí cuộn của fan
+  linkListEl.scrollTop = keepScroll;
 
+  // Chỉ khi cần (mở trang, đổi tab, vừa mở link đến lượt) mới cuộn tới link kế tiếp
+  if (scrollToNext && nextRow) {
+
+    const top = nextRow.offsetTop;
+    const bottom = top + nextRow.offsetHeight;
+
+    if (top < linkListEl.scrollTop) {
+      linkListEl.scrollTop = top - 4;
+    } else if (bottom > linkListEl.scrollTop + linkListEl.clientHeight) {
+      linkListEl.scrollTop = bottom - linkListEl.clientHeight + 4;
+    }
+
+  }
+
+  // Nút "Open next link": mở link đến lượt
   nextLinkBtn.disabled = !next;
   nextLinkBtn.textContent = next
     ? '→  Open next link'
@@ -840,7 +867,8 @@ document.querySelectorAll('.vault-tab').forEach(t => {
   t.addEventListener('click', () => {
 
     vaultTab = t.dataset.vtab;
-    renderLinks();
+    linkListEl.scrollTop = 0;
+    renderLinks(true);
 
   });
 
@@ -856,4 +884,4 @@ nextLinkBtn.addEventListener('click', () => {
 });
 
 // Hiển thị khung Link Vault khi mở website
-renderLinks();
+renderLinks(true);
