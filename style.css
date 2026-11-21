@@ -1002,78 +1002,33 @@ footer small {
   text-align: center;
 }
 
+/* 17.F - DẤU TÍCH TỰ ĐỘNG (FAN KHÔNG BẤM ĐƯỢC) */
 
-/* 17.F - Ô TÍCH (CHECKBOX) */
-
-.link-check {
-  -webkit-appearance: none;
-  appearance: none;
-
+.link-status {
   display: grid;
-  place-content: center;
+  place-items: center;
 
   width: 22px;
   height: 22px;
-  margin: 0;
 
-  background: #ffffff;
-  border: 2px solid #9bb7d1;
+  background: #f4f8fc;
+  border: 2px solid #c9d9ea;
   border-radius: 6px;
-
-  cursor: pointer;
-}
-
-.link-check:checked {
-  background: #3f8fdc;
-  border-color: #3f8fdc;
-}
-
-.link-check:checked::after {
-  content: "✓";
 
   color: #ffffff;
   font-size: 14px;
   font-weight: 800;
   line-height: 1;
+
+  pointer-events: none;
+  user-select: none;
 }
 
-.link-check:disabled {
-  opacity: 0.45;
-  cursor: default;
+/* Đã mở link: dấu tích xanh */
+.link-status.is-done {
+  background: #3fb98f;
+  border-color: #3fb98f;
 }
-
-.link-check:focus-visible {
-  outline: 3px solid #478dd1;
-  outline-offset: 2px;
-}
-
-
-/* 17.G - CHÂN: SELECT ALL */
-
-.vault-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-
-  margin-top: 12px;
-  padding-top: 10px;
-
-  border-top: 1px solid #e0effc;
-
-  color: #476f95;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.vault-check-all {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  cursor: pointer;
-}
-
 
 /* 17.H - ICON NỀN TẢNG TRONG CỬA SỔ CAPTION */
 
