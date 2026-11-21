@@ -513,8 +513,6 @@ const linkListEl = document.getElementById('link-list');
 const linksProgressEl = document.getElementById('links-progress');
 const linksFillEl = document.getElementById('links-fill');
 const nextLinkBtn = document.getElementById('next-link');
-const selectAllEl = document.getElementById('select-all');
-const selectedCountEl = document.getElementById('selected-count');
 const vaultPanelName = document.getElementById('vault-panel-name');
 const vaultPanelIcon = document.getElementById('vault-panel-icon');
 
@@ -572,24 +570,6 @@ function saveDone() {
   } catch {
     // Trình duyệt chặn lưu thì vẫn dùng bình thường trong phiên này
   }
-}
-
-// Đánh dấu xong / bỏ đánh dấu cho nhiều link cùng lúc
-function changeDone(links, on) {
-
-  links.forEach(link => {
-
-    const k = keyOf(link);
-    const has = doneKeys.includes(k);
-
-    if (on && !has) doneKeys.push(k);
-    if (!on && has) doneKeys = doneKeys.filter(x => x !== k);
-
-  });
-
-  saveDone();
-  renderLinks();
-
 }
 
 
@@ -828,18 +808,17 @@ function renderLinks() {
     btn.textContent = 'Open ↗';
     btn.addEventListener('click', () => showModal(link));
 
-    // Ô tích: đánh dấu đã làm xong
-    const check = document.createElement('input');
-    check.type = 'checkbox';
-    check.className = 'link-check';
-    check.checked = done;
-    check.setAttribute('aria-label', 'Mark as done');
-    check.addEventListener('change', () => changeDone([link], check.checked));
+    // Dấu tích: chỉ hiện khi fan đã mở link (fan không tự tích được)
+    const status = document.createElement('span');
+    status.className = 'link-status' + (done ? ' is-done' : '');
+    status.setAttribute('role', 'img');
+    status.setAttribute('aria-label', done ? 'Completed' : 'Not opened yet');
+    status.textContent = done ? '✓' : '';
 
     li.appendChild(num);
     li.appendChild(info);
     li.appendChild(btn);
-    li.appendChild(check);
+    li.appendChild(status);
 
     linkListEl.appendChild(li);
 
@@ -852,11 +831,6 @@ function renderLinks() {
   nextLinkBtn.textContent = next
     ? '→  Open next link'
     : '✓  All links done';
-
-  // Chân khung: Select all và số link đã chọn
-  selectedCountEl.textContent = doneCount + ' selected';
-  selectAllEl.checked = list.length > 0 && doneCount === list.length;
-  selectAllEl.disabled = list.length === 0;
 
 }
 
@@ -878,13 +852,6 @@ nextLinkBtn.addEventListener('click', () => {
   const next = tabLinks().find(l => !doneKeys.includes(keyOf(l)));
 
   if (next) showModal(next);
-
-});
-
-// Bấm "Select all": tích hoặc bỏ tích tất cả link trong tab này
-selectAllEl.addEventListener('change', () => {
-
-  changeDone(tabLinks(), selectAllEl.checked);
 
 });
 
