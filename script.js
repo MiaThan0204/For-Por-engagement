@@ -695,8 +695,6 @@ function renderLinks(scrollToNext = false) {
 
     if (isNext) nextRow = li;
 
-    // Số thứ tự: 01, 02, 03...
-    const num = document.createElement('span');
 
     // Platform logo: X or Instagram
     const num = document.createElement('span');
@@ -712,7 +710,6 @@ function renderLinks(scrollToNext = false) {
     platformIcon.setAttribute('aria-hidden', 'true');
 
     num.appendChild(platformIcon);
-
 
     // Tên link và loại việc cần làm (share, quote, reply, comment...)
     const info = document.createElement('div');
