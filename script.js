@@ -535,14 +535,14 @@ function showModal(link) {
 
   currentLink = link;
 
-  modalBadge.textContent = platOf(link) === 'x' ? '𝕏' : '◎';
+
+  modalBadge.innerHTML =
+    platOf(link) === 'x'
+      ? '<i class="bi bi-twitter-x" aria-hidden="true"></i>'
+      : '<i class="bi bi-instagram" aria-hidden="true"></i>';
+
   modalTitle.textContent = link.title || 'Link';
 
-  // Share / Quote thì ghi "caption", còn lại ghi "comment"
-  modalSub.textContent =
-    (link.action === 'share' || link.action === 'quote')
-      ? 'Auto-matched caption randomized for this post.'
-      : 'Auto-matched comment randomized for this post.';
 
   modalText.value = makeCaption(platOf(link));
   modalStatus.textContent = '';
@@ -615,17 +615,6 @@ modalCopyOpen.addEventListener('click', async () => {
   }
 
 });
-
-// Nút OPEN LINK ONLY
-document.getElementById('modal-open-only').addEventListener('click', () => {
-
-  if (!currentLink) return;
-
-  openLink(currentLink);
-  hideModal();
-
-});
-
 
 /* ------------------------------------------
    Vẽ khung Link Vault: tab, danh sách, tiến độ
