@@ -16,13 +16,7 @@ display: grid;
 
   padding: 28px 16px;
 
-  font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    Segoe UI,
-    sans-serif;
+ font-family: 'Nunito', sans-serif;
 
   background:
     radial-gradient(
