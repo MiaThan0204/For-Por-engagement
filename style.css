@@ -691,82 +691,281 @@ footer small {
    17. LINK VAULT
    ========================================== */
 
-.links {
+/* 17.A - KHUNG NGOÀI */
+
+.vault {
   margin: 0 0 28px;
   padding: 16px;
-  border-radius: 16px;
-  background: #f4f9ff;
-  border: 1px solid #e0effc;
+
+  background: linear-gradient(
+    160deg,
+    #eef6ff 0%,
+    #f7f2fc 100%
+  );
+
+  border: 1.5px solid #cfe3f6;
+  border-radius: 20px;
+
   text-align: left;
 }
 
-.links-header {
+.vault-heading {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  margin: 0 0 12px;
+
+  color: #254a70;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.vault-heading i {
+  color: #3a79c0;
+  font-size: 20px;
+  line-height: 1;
+}
+
+
+/* 17.B - 2 NÚT CHỌN X / INSTAGRAM */
+
+.vault-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+
+  margin-bottom: 12px;
+}
+
+.vault-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 46px;
+  padding: 8px 10px;
+
+  background: #ffffff;
+  border: 2px solid #d6e6f3;
+  border-radius: 999px;
+
+  color: #35485c;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.vault-tab i {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.vault-tab[data-vtab="ig"] i {
+  color: #d14b91;
+}
+
+/* X đang chọn: xanh */
+.vault-tab.selected[data-vtab="x"] {
+  background: linear-gradient(180deg, #6fb4ee, #3f8fdc);
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0 5px 14px rgba(66, 132, 194, 0.28);
+}
+
+/* Instagram đang chọn: hồng tím */
+.vault-tab.selected[data-vtab="ig"] {
+  background: linear-gradient(
+    125deg,
+    #a85bd4 0%,
+    #cf5ca8 35%,
+    #ec6999 65%,
+    #f5a06b 100%
+  );
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0 5px 14px rgba(210, 91, 158, 0.28);
+}
+
+.vault-tab.selected i {
+  color: #ffffff;
+}
+
+
+/* 17.C - KHUNG DANH SÁCH */
+
+.vault-panel {
+  padding: 14px;
+
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid #dcebf9;
+  border-radius: 18px;
+}
+
+.vault-panel-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px 12px;
+
+  margin-bottom: 12px;
+}
+
+.vault-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+
+  color: #254a70;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.vault-panel-icon {
+  flex: none;
+
+  display: grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  background: #1f5fae;
+  border-radius: 11px;
+
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.vault-panel-icon.is-ig {
+  background: linear-gradient(125deg, #a85bd4, #ec6999 65%, #f5a06b);
+}
+
+.vault-next {
+  padding: 10px 16px;
+
+  background: linear-gradient(180deg, #6fb4ee, #3f8fdc);
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+
+  color: #ffffff;
+  font-size: 13px;
+  white-space: nowrap;
+
+  box-shadow: 0 3px 0 #76b5e5, 0 6px 12px rgba(66, 132, 194, 0.2);
+}
+
+.vault-next:disabled {
+  background: #b9d6ee;
+  box-shadow: none;
+  cursor: default;
+}
+
+
+/* 17.D - TIẾN ĐỘ */
+
+.vault-progress {
+  grid-column: 1 / -1;
+
+  display: grid;
+  gap: 6px;
+
   color: #5f86a6;
   font-size: 12px;
   font-weight: 800;
-  letter-spacing: 0.8px;
-  margin-bottom: 10px;
 }
 
-.links .primary {
-  margin: 14px 0 12px;
+.vault-bar {
+  height: 8px;
+  overflow: hidden;
+
+  background: #dcebf9;
+  border-radius: 999px;
 }
 
-.primary:disabled,
-.primary:disabled:hover {
-  background: #b9d6ee;
-  border-color: #b9d6ee;
-  cursor: default;
+.vault-fill {
+  width: 0%;
+  height: 100%;
+
+  background: linear-gradient(90deg, #74b7eb, #8fd0f5);
+  border-radius: 999px;
+
+  transition: width 0.4s ease;
 }
+
+
+/* 17.E - DANH SÁCH LINK (CÓ THANH CUỘN) */
 
 .link-list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 4px 0 0;
+
   display: grid;
+  align-content: start;
   gap: 8px;
-  max-height: 320px;
+
+  max-height: 330px;
   overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: #9cc6ee transparent;
+}
+
+.link-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.link-list::-webkit-scrollbar-thumb {
+  background: #9cc6ee;
+  border-radius: 999px;
 }
 
 .link-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
   align-items: center;
-  gap: 12px;
-  padding: 10px 12px;
-  background: #fff;
+  gap: 10px;
+
+  padding: 8px 12px 8px 8px;
+
+  background: #ffffff;
   border: 1px solid #d6e6f3;
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
 .link-item.done {
-  opacity: 0.6;
+  opacity: 0.65;
 }
 
-.link-badge {
-  flex: none;
-  width: 34px;
-  height: 34px;
+.link-num {
   display: grid;
   place-items: center;
+
+  width: 38px;
+  height: 32px;
+
+  background: #e4f0fc;
   border-radius: 10px;
-  background: #d8ecff;
+
   color: #24527c;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
 }
 
 .link-info {
-  flex: 1;
-  min-width: 0;
   display: grid;
+  min-width: 0;
   font-size: 13px;
 }
 
 .link-info strong {
-  color: #315b7e;
   overflow: hidden;
+
+  color: #1f4a78;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -775,18 +974,20 @@ footer small {
   color: #7893a8;
   font-size: 11px;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.6px;
+  text-transform: uppercase;
 }
 
 .link-open {
-  flex: none;
-  padding: 9px 12px;
-  font-size: 12px;
+  padding: 8px 12px;
+
+  background: #ffffff;
   border: 1px solid #c6dff2;
-  border-radius: 10px;
-  background: #fff;
+  border-radius: 999px;
+
   color: #356d9c;
+  font-size: 12px;
+  white-space: nowrap;
 }
 
 .link-open:hover {
@@ -794,28 +995,147 @@ footer small {
 }
 
 .link-empty {
-  text-align: center;
+  padding: 14px 10px;
+
   color: #7893a8;
   font-size: 13px;
-  padding: 10px;
+  text-align: center;
 }
 
-.reset-links {
-  display: block;
-  margin: 12px auto 0;
-  padding: 6px 10px;
-  border: 0;
-  background: none;
-  color: #7893a8;
-  font-size: 12px;
-  font-weight: 600;
-  text-decoration: underline;
+
+/* 17.F - Ô TÍCH (CHECKBOX) */
+
+.link-check {
+  -webkit-appearance: none;
+  appearance: none;
+
+  display: grid;
+  place-content: center;
+
+  width: 22px;
+  height: 22px;
+  margin: 0;
+
+  background: #ffffff;
+  border: 2px solid #9bb7d1;
+  border-radius: 6px;
+
+  cursor: pointer;
 }
 
-.reset-links[hidden] {
-  display: none;
+.link-check:checked {
+  background: #3f8fdc;
+  border-color: #3f8fdc;
 }
 
+.link-check:checked::after {
+  content: "✓";
+
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.link-check:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.link-check:focus-visible {
+  outline: 3px solid #478dd1;
+  outline-offset: 2px;
+}
+
+
+/* 17.G - CHÂN: SELECT ALL */
+
+.vault-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  margin-top: 12px;
+  padding-top: 10px;
+
+  border-top: 1px solid #e0effc;
+
+  color: #476f95;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.vault-check-all {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+}
+
+
+/* 17.H - ICON NỀN TẢNG TRONG CỬA SỔ CAPTION */
+
+.link-badge {
+  flex: none;
+
+  display: grid;
+  place-items: center;
+
+  width: 34px;
+  height: 34px;
+
+  background: #d8ecff;
+  border-radius: 10px;
+
+  color: #24527c;
+  font-weight: 700;
+}
+
+
+/* 17.I - ĐIỆN THOẠI */
+
+@media (max-width: 480px) {
+
+  .vault {
+    padding: 12px;
+  }
+
+  .vault-panel {
+    padding: 10px;
+  }
+
+  .vault-tab {
+    gap: 6px;
+    min-height: 44px;
+    padding: 6px 6px;
+    font-size: 12px;
+  }
+
+  .vault-tab i {
+    font-size: 16px;
+  }
+
+  .vault-next {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  .link-item {
+    gap: 7px;
+    padding: 7px 9px 7px 7px;
+  }
+
+  .link-num {
+    width: 34px;
+  }
+
+  .link-open {
+    padding: 7px 10px;
+  }
+
+}
 /* ==========================================
    18. LINK CAPTION POPUP
    ========================================== */
