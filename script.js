@@ -697,8 +697,22 @@ function renderLinks(scrollToNext = false) {
 
     // Số thứ tự: 01, 02, 03...
     const num = document.createElement('span');
+
+    // Platform logo: X or Instagram
+    const num = document.createElement('span');
     num.className = 'link-num';
-    num.textContent = String(i + 1).padStart(2, '0');
+
+    const platformIcon = document.createElement('i');
+
+    platformIcon.className =
+      platOf(link) === 'x'
+        ? 'bi bi-twitter-x'
+        : 'bi bi-instagram';
+
+    platformIcon.setAttribute('aria-hidden', 'true');
+
+    num.appendChild(platformIcon);
+
 
     // Tên link và loại việc cần làm (share, quote, reply, comment...)
     const info = document.createElement('div');
