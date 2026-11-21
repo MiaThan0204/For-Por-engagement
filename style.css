@@ -899,21 +899,36 @@ footer small {
   box-shadow: 0 0 0 1px var(--accent);
 }
 
+
 .link-num {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  width: 30px;
-  height: 26px;
+  width: 34px;
+  height: 34px;
 
-  background: var(--soft);
-  border-radius: 8px;
+  background: #f4f5f7;
+  border-radius: 10px;
 
-  color: var(--text);
-  font-size: 12px;
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
+  color: #111111;
+  font-size: 20px;
+  line-height: 1;
 }
+
+.link-num .bi-instagram {
+  color: #d14b91;
+}
+
+.link-item.is-next .link-num {
+  background: #111111;
+  color: #ffffff;
+}
+
+.link-item.is-next .link-num i {
+  color: #ffffff;
+}
+
 
 .link-item.is-next .link-num {
   background: var(--accent);
