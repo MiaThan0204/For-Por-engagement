@@ -899,7 +899,6 @@ footer small {
   box-shadow: 0 0 0 1px var(--accent);
 }
 
-
 .link-num {
   display: flex;
   align-items: center;
@@ -930,10 +929,6 @@ footer small {
 }
 
 
-.link-item.is-next .link-num {
-  background: var(--accent);
-  color: #ffffff;
-}
 
 .link-info {
   display: grid;
