@@ -237,19 +237,49 @@
 
  
 <!-- ===================================
-     7. GENERATE CAPTION BUTTON
+     7 + 8. CAPTION ACTION BUTTONS
      =================================== -->
 
-<button
-  id="generate"
-  class="primary"
-  type="button"
->
-  <span class="generate-icon" aria-hidden="true">↻</span>
-  <span>Generate another caption</span>
-</button>
+<div class="caption-actions">
+
+  <!-- LEFT: GENERATE -->
+  <button
+    id="generate"
+    class="primary"
+    type="button"
+  >
+    <span class="generate-icon" aria-hidden="true">↻</span>
+    <span>Generate another caption</span>
+  </button>
+
+  <!-- RIGHT: COPY + POST -->
+  <div class="actions">
+
+    <button
+      id="copy"
+      class="secondary"
+      type="button"
+    >
+      <i class="bi bi-files" aria-hidden="true"></i>
+      <span>Copy caption</span>
+    </button>
+
+    <button
+      id="post"
+      class="secondary"
+      type="button"
+    >
+      <i class="bi bi-twitter-x" aria-hidden="true"></i>
+      <span>Post on X ↗</span>
+    </button>
+
+  </div>
+
+</div>
+
+
 <!-- ===================================
-     7B. START AGAIN (CHỈ HIỆN KHI ĐẠT 2000)
+     7B. START AGAIN
      =================================== -->
 
 <button
@@ -262,34 +292,7 @@
   <span>Start again</span>
 </button>
 
-<!-- ===================================
-     8. COPY AND POST BUTTONS
-     =================================== -->
 
-<div class="actions">
-  
-<!-- COPY CAPTION -->
-<button
-  id="copy"
-  class="secondary"
-  type="button"
->
-  <i class="bi bi-files" aria-hidden="true"></i>
-  <span>Copy caption</span>
-</button>
-
-
-  <!-- POST ON X / INSTAGRAM -->
-  <button
-    id="post"
-    class="secondary"
-    type="button"
-  >
-    <i class="bi bi-twitter-x" aria-hidden="true"></i>
-    <span>Post on X ↗</span>
-  </button>
-
-</div>
 
       <!-- ===================================
          9B. LINK VAULT
