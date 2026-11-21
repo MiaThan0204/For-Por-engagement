@@ -392,78 +392,88 @@
 
   </main>
   
-  <!-- =====================================
-       10B. LINK CAPTION POPUP
-       ===================================== -->
 
-  <div class="vault-modal" id="vault-modal" hidden>
+<!-- =====================================
+     10B. LINK CAPTION POPUP
+     ===================================== -->
 
-    <div
-      class="vault-box"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
-    >
+<div class="vault-modal" id="vault-modal" hidden>
 
-      <button
-        type="button"
-        class="vault-close"
-        id="modal-close"
-        aria-label="Close"
-      >×</button>
+  <div
+    class="vault-box"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+  >
 
-      <div class="vault-head">
+    <button
+      type="button"
+      class="vault-close"
+      id="modal-close"
+      aria-label="Close"
+    >×</button>
 
-        <span class="link-badge" id="modal-badge">𝕏</span>
+    <div class="vault-head">
 
-        <div>
-          <p class="vault-title" id="modal-title">Link title</p>
-          <p class="vault-sub" id="modal-sub">
-            Auto-matched comment randomized for this post.
-          </p>
-          <p class="vault-sub2">
-            Copy &amp; paste to boost engagement!
-          </p>
-        </div>
+      <span class="link-badge" id="modal-badge">
+        <i class="bi bi-twitter-x"></i>
+      </span>
 
+      <div class="vault-head-text">
+        <p class="vault-title" id="modal-title">
+          @porsuppakarn
+        </p>
+
+        <p class="vault-sub">
+          Copy and paste to support Por
+        </p>
       </div>
-
-      <div class="vault-prepared">
-
-        <div class="vault-prepared-head">
-          <span>PREPARED COMMENT FOR COPY:</span>
-          <button
-            type="button"
-            class="vault-random"
-            id="modal-random"
-          >↻ Randomize</button>
-        </div>
-
-        <textarea
-          class="vault-text"
-          id="modal-text"
-          aria-label="Prepared comment"
-        ></textarea>
-
-      </div>
-
-      <button
-        type="button"
-        class="vault-main"
-        id="modal-copy-open"
-      >COPY COMMENT &amp; OPEN LINK ↗</button>
-
-      <button
-        type="button"
-        class="vault-alt"
-        id="modal-open-only"
-      >OPEN LINK ONLY</button>
-
-      <p class="vault-status" id="modal-status" role="status"></p>
 
     </div>
 
+    <div class="vault-prepared">
+
+      <div class="vault-prepared-head">
+
+        <span>YOUR MESSAGE</span>
+
+        <button
+          type="button"
+          class="vault-random"
+          id="modal-random"
+        >
+          <i class="bi bi-arrow-repeat"></i>
+          Generate Again
+        </button>
+
+      </div>
+
+      <textarea
+        class="vault-text"
+        id="modal-text"
+        aria-label="Your message"
+      ></textarea>
+
+    </div>
+
+    <button
+      type="button"
+      class="vault-main"
+      id="modal-copy-open"
+    >
+      <i class="bi bi-files"></i>
+      COPY &amp; OPEN POST ↗
+    </button>
+
+    <p
+      class="vault-status"
+      id="modal-status"
+      role="status"
+    ></p>
+
   </div>
+
+</div>
 
 <!-- =====================================
      10C. GOAL COMPLETED POPUP
